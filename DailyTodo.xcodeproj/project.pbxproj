@@ -18,7 +18,13 @@
 		62675BA6240390A7003344D7 /* DailyTodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62675BA5240390A7003344D7 /* DailyTodoTests.swift */; };
 		62675BB1240390A7003344D7 /* DailyTodoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62675BB0240390A7003344D7 /* DailyTodoUITests.swift */; };
 		62675BBF240390D6003344D7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 62675BBE240390D6003344D7 /* GoogleService-Info.plist */; };
+		62C6285A24039897001193F0 /* DailyTodoSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62C6285124039897001193F0 /* DailyTodoSDK.framework */; };
+		62C6286124039897001193F0 /* DailyTodoSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C6286024039897001193F0 /* DailyTodoSDKTests.swift */; };
+		62C6286624039897001193F0 /* DailyTodoSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62C6285124039897001193F0 /* DailyTodoSDK.framework */; };
+		62C6286724039897001193F0 /* DailyTodoSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 62C6285124039897001193F0 /* DailyTodoSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		62C6287024039A0E001193F0 /* DailyTodoSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C6286F24039A0E001193F0 /* DailyTodoSDK.swift */; };
 		8F870B053EBAE65CA116EDC9 /* Pods_DailyTodo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC7C4FB9C1F7B87018022624 /* Pods_DailyTodo.framework */; };
+		DF230A20A4A722D0352066F3 /* Pods_DailyTodo_DailyTodoSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 024C2DE88F768E7B65A7EEB1 /* Pods_DailyTodo_DailyTodoSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,9 +42,47 @@
 			remoteGlobalIDString = 62675B8A240390A6003344D7;
 			remoteInfo = DailyTodo;
 		};
+		62C6285B24039897001193F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 62675B83240390A6003344D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 62C6285024039897001193F0;
+			remoteInfo = DailyTodoSDK;
+		};
+		62C6285D24039897001193F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 62675B83240390A6003344D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 62675B8A240390A6003344D7;
+			remoteInfo = DailyTodo;
+		};
+		62C6286424039897001193F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 62675B83240390A6003344D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 62C6285024039897001193F0;
+			remoteInfo = DailyTodoSDK;
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		62C6286B24039897001193F0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				62C6286724039897001193F0 /* DailyTodoSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		024C2DE88F768E7B65A7EEB1 /* Pods_DailyTodo_DailyTodoSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DailyTodo_DailyTodoSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		464BE92C482264711C11FA93 /* Pods-DailyTodo-DailyTodoSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyTodo-DailyTodoSDK.release.xcconfig"; path = "Target Support Files/Pods-DailyTodo-DailyTodoSDK/Pods-DailyTodo-DailyTodoSDK.release.xcconfig"; sourceTree = "<group>"; };
+		496D4D62A7F1FF6C99F22AB9 /* Pods-DailyTodo-DailyTodoSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyTodo-DailyTodoSDK.debug.xcconfig"; path = "Target Support Files/Pods-DailyTodo-DailyTodoSDK/Pods-DailyTodo-DailyTodoSDK.debug.xcconfig"; sourceTree = "<group>"; };
 		62675B8B240390A6003344D7 /* DailyTodo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyTodo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62675B8E240390A6003344D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62675B90240390A6003344D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +98,12 @@
 		62675BB0240390A7003344D7 /* DailyTodoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTodoUITests.swift; sourceTree = "<group>"; };
 		62675BB2240390A7003344D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62675BBE240390D6003344D7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		62C6285124039897001193F0 /* DailyTodoSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DailyTodoSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		62C6285424039897001193F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		62C6285924039897001193F0 /* DailyTodoSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DailyTodoSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		62C6286024039897001193F0 /* DailyTodoSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTodoSDKTests.swift; sourceTree = "<group>"; };
+		62C6286224039897001193F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		62C6286F24039A0E001193F0 /* DailyTodoSDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTodoSDK.swift; sourceTree = "<group>"; };
 		6B778A873F47CB034F4C4605 /* Pods-DailyTodoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyTodoTests.release.xcconfig"; path = "Target Support Files/Pods-DailyTodoTests/Pods-DailyTodoTests.release.xcconfig"; sourceTree = "<group>"; };
 		8852DC88C7B5F0F12EE09A35 /* Pods-DailyTodo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyTodo.debug.xcconfig"; path = "Target Support Files/Pods-DailyTodo/Pods-DailyTodo.debug.xcconfig"; sourceTree = "<group>"; };
 		8C8FB8D462DC6C11F33757F7 /* Pods-DailyTodo-DailyTodoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyTodo-DailyTodoUITests.release.xcconfig"; path = "Target Support Files/Pods-DailyTodo-DailyTodoUITests/Pods-DailyTodo-DailyTodoUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -71,6 +121,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F870B053EBAE65CA116EDC9 /* Pods_DailyTodo.framework in Frameworks */,
+				62C6286624039897001193F0 /* DailyTodoSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +141,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		62C6284E24039897001193F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF230A20A4A722D0352066F3 /* Pods_DailyTodo_DailyTodoSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		62C6285624039897001193F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62C6285A24039897001193F0 /* DailyTodoSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -99,6 +166,8 @@
 				62675B8D240390A6003344D7 /* DailyTodo */,
 				62675BA4240390A7003344D7 /* DailyTodoTests */,
 				62675BAF240390A7003344D7 /* DailyTodoUITests */,
+				62C6285224039897001193F0 /* DailyTodoSDK */,
+				62C6285F24039897001193F0 /* DailyTodoSDKTests */,
 				62675B8C240390A6003344D7 /* Products */,
 				6B5F0DBF86533E8D5D9A5C1E /* Pods */,
 				95AC6F7EB1365D44B69B3BCA /* Frameworks */,
@@ -111,6 +180,8 @@
 				62675B8B240390A6003344D7 /* DailyTodo.app */,
 				62675BA1240390A7003344D7 /* DailyTodoTests.xctest */,
 				62675BAC240390A7003344D7 /* DailyTodoUITests.xctest */,
+				62C6285124039897001193F0 /* DailyTodoSDK.framework */,
+				62C6285924039897001193F0 /* DailyTodoSDKTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,7 +196,6 @@
 				62675B97240390A7003344D7 /* Assets.xcassets */,
 				62675B99240390A7003344D7 /* LaunchScreen.storyboard */,
 				62675B9C240390A7003344D7 /* Info.plist */,
-				62675BBE240390D6003344D7 /* GoogleService-Info.plist */,
 			);
 			path = DailyTodo;
 			sourceTree = "<group>";
@@ -148,6 +218,25 @@
 			path = DailyTodoUITests;
 			sourceTree = "<group>";
 		};
+		62C6285224039897001193F0 /* DailyTodoSDK */ = {
+			isa = PBXGroup;
+			children = (
+				62C6286F24039A0E001193F0 /* DailyTodoSDK.swift */,
+				62675BBE240390D6003344D7 /* GoogleService-Info.plist */,
+				62C6285424039897001193F0 /* Info.plist */,
+			);
+			path = DailyTodoSDK;
+			sourceTree = "<group>";
+		};
+		62C6285F24039897001193F0 /* DailyTodoSDKTests */ = {
+			isa = PBXGroup;
+			children = (
+				62C6286024039897001193F0 /* DailyTodoSDKTests.swift */,
+				62C6286224039897001193F0 /* Info.plist */,
+			);
+			path = DailyTodoSDKTests;
+			sourceTree = "<group>";
+		};
 		6B5F0DBF86533E8D5D9A5C1E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +246,8 @@
 				8C8FB8D462DC6C11F33757F7 /* Pods-DailyTodo-DailyTodoUITests.release.xcconfig */,
 				9D1FAA5A19FB0DBAA06D2B2F /* Pods-DailyTodoTests.debug.xcconfig */,
 				6B778A873F47CB034F4C4605 /* Pods-DailyTodoTests.release.xcconfig */,
+				496D4D62A7F1FF6C99F22AB9 /* Pods-DailyTodo-DailyTodoSDK.debug.xcconfig */,
+				464BE92C482264711C11FA93 /* Pods-DailyTodo-DailyTodoSDK.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -167,11 +258,22 @@
 				EC7C4FB9C1F7B87018022624 /* Pods_DailyTodo.framework */,
 				DE9620C630D97CC7B5992F96 /* Pods_DailyTodo_DailyTodoUITests.framework */,
 				A9B06D99C9D0628E1A3BA40B /* Pods_DailyTodoTests.framework */,
+				024C2DE88F768E7B65A7EEB1 /* Pods_DailyTodo_DailyTodoSDK.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		62C6284C24039897001193F0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		62675B8A240390A6003344D7 /* DailyTodo */ = {
@@ -183,10 +285,12 @@
 				62675B88240390A6003344D7 /* Frameworks */,
 				62675B89240390A6003344D7 /* Resources */,
 				66B6F80272799D54037643E1 /* [CP] Embed Pods Frameworks */,
+				62C6286B24039897001193F0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				62C6286524039897001193F0 /* PBXTargetDependency */,
 			);
 			name = DailyTodo;
 			productName = DailyTodo;
@@ -220,7 +324,6 @@
 				62675BA8240390A7003344D7 /* Sources */,
 				62675BA9240390A7003344D7 /* Frameworks */,
 				62675BAA240390A7003344D7 /* Resources */,
-				AD25B5B8917037405919F1A5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -231,6 +334,44 @@
 			productName = DailyTodoUITests;
 			productReference = 62675BAC240390A7003344D7 /* DailyTodoUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		62C6285024039897001193F0 /* DailyTodoSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 62C6286824039897001193F0 /* Build configuration list for PBXNativeTarget "DailyTodoSDK" */;
+			buildPhases = (
+				7EBAFCF595944CD3B52B98EC /* [CP] Check Pods Manifest.lock */,
+				62C6284C24039897001193F0 /* Headers */,
+				62C6284D24039897001193F0 /* Sources */,
+				62C6284E24039897001193F0 /* Frameworks */,
+				62C6284F24039897001193F0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DailyTodoSDK;
+			productName = DailyTodoSDK;
+			productReference = 62C6285124039897001193F0 /* DailyTodoSDK.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		62C6285824039897001193F0 /* DailyTodoSDKTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 62C6286C24039897001193F0 /* Build configuration list for PBXNativeTarget "DailyTodoSDKTests" */;
+			buildPhases = (
+				62C6285524039897001193F0 /* Sources */,
+				62C6285624039897001193F0 /* Frameworks */,
+				62C6285724039897001193F0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				62C6285C24039897001193F0 /* PBXTargetDependency */,
+				62C6285E24039897001193F0 /* PBXTargetDependency */,
+			);
+			name = DailyTodoSDKTests;
+			productName = DailyTodoSDKTests;
+			productReference = 62C6285924039897001193F0 /* DailyTodoSDKTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -253,6 +394,14 @@
 						CreatedOnToolsVersion = 11.3.1;
 						TestTargetID = 62675B8A240390A6003344D7;
 					};
+					62C6285024039897001193F0 = {
+						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
+					};
+					62C6285824039897001193F0 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 62675B8A240390A6003344D7;
+					};
 				};
 			};
 			buildConfigurationList = 62675B86240390A6003344D7 /* Build configuration list for PBXProject "DailyTodo" */;
@@ -271,6 +420,8 @@
 				62675B8A240390A6003344D7 /* DailyTodo */,
 				62675BA0240390A7003344D7 /* DailyTodoTests */,
 				62675BAB240390A7003344D7 /* DailyTodoUITests */,
+				62C6285024039897001193F0 /* DailyTodoSDK */,
+				62C6285824039897001193F0 /* DailyTodoSDKTests */,
 			);
 		};
 /* End PBXProject section */
@@ -295,6 +446,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		62675BAA240390A7003344D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		62C6284F24039897001193F0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		62C6285724039897001193F0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -365,21 +530,26 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DailyTodo/Pods-DailyTodo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AD25B5B8917037405919F1A5 /* [CP] Embed Pods Frameworks */ = {
+		7EBAFCF595944CD3B52B98EC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DailyTodo-DailyTodoUITests/Pods-DailyTodo-DailyTodoUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DailyTodo-DailyTodoUITests/Pods-DailyTodo-DailyTodoUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DailyTodo-DailyTodoSDK-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DailyTodo-DailyTodoUITests/Pods-DailyTodo-DailyTodoUITests-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E7495BE69540D5BC3DE729C0 /* [CP] Check Pods Manifest.lock */ = {
@@ -433,6 +603,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		62C6284D24039897001193F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62C6287024039A0E001193F0 /* DailyTodoSDK.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		62C6285524039897001193F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62C6286124039897001193F0 /* DailyTodoSDKTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -445,6 +631,21 @@
 			isa = PBXTargetDependency;
 			target = 62675B8A240390A6003344D7 /* DailyTodo */;
 			targetProxy = 62675BAD240390A7003344D7 /* PBXContainerItemProxy */;
+		};
+		62C6285C24039897001193F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 62C6285024039897001193F0 /* DailyTodoSDK */;
+			targetProxy = 62C6285B24039897001193F0 /* PBXContainerItemProxy */;
+		};
+		62C6285E24039897001193F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 62675B8A240390A6003344D7 /* DailyTodo */;
+			targetProxy = 62C6285D24039897001193F0 /* PBXContainerItemProxy */;
+		};
+		62C6286524039897001193F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 62C6285024039897001193F0 /* DailyTodoSDK */;
+			targetProxy = 62C6286424039897001193F0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -586,6 +787,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8852DC88C7B5F0F12EE09A35 /* Pods-DailyTodo.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y89RR7VQFA;
@@ -605,6 +807,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EDF45C233727B4E827ACA65E /* Pods-DailyTodo.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y89RR7VQFA;
@@ -708,6 +911,105 @@
 			};
 			name = Release;
 		};
+		62C6286924039897001193F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 496D4D62A7F1FF6C99F22AB9 /* Pods-DailyTodo-DailyTodoSDK.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = Y89RR7VQFA;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = DailyTodoSDK/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.j.ishida.DailyTodoSDK;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		62C6286A24039897001193F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 464BE92C482264711C11FA93 /* Pods-DailyTodo-DailyTodoSDK.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = Y89RR7VQFA;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = DailyTodoSDK/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.j.ishida.DailyTodoSDK;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		62C6286D24039897001193F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y89RR7VQFA;
+				INFOPLIST_FILE = DailyTodoSDKTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.j.ishida.DailyTodoSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DailyTodo.app/DailyTodo";
+			};
+			name = Debug;
+		};
+		62C6286E24039897001193F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y89RR7VQFA;
+				INFOPLIST_FILE = DailyTodoSDKTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.j.ishida.DailyTodoSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DailyTodo.app/DailyTodo";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -743,6 +1045,24 @@
 			buildConfigurations = (
 				62675BBC240390A7003344D7 /* Debug */,
 				62675BBD240390A7003344D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		62C6286824039897001193F0 /* Build configuration list for PBXNativeTarget "DailyTodoSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				62C6286924039897001193F0 /* Debug */,
+				62C6286A24039897001193F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		62C6286C24039897001193F0 /* Build configuration list for PBXNativeTarget "DailyTodoSDKTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				62C6286D24039897001193F0 /* Debug */,
+				62C6286E24039897001193F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
