@@ -1,0 +1,7 @@
+.DS_Store
+project.xcworkspace/
+xcuserdata/
+*.playground/
+
+Pods/
+GoogleService-Info.plist
