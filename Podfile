@@ -10,6 +10,11 @@ target 'DailyTodo' do
   target 'DailyTodoSDK' do
     pod 'Firebase/Auth'
     pod 'Firebase/Firestore'
+
+    target 'DailyTodoSDKTests' do
+      inherit! :search_paths
+      # Pods for testing
+    end
   end
 
   target 'DailyTodoTests' do
