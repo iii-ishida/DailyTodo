@@ -12,7 +12,6 @@ import UIKit
 
 class RootViewController: UIViewController {
   private var cancellableSet: Set<AnyCancellable> = []
-  @IBOutlet weak var authContainerView: UIView!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -20,7 +19,13 @@ class RootViewController: UIViewController {
     DailyTodoSDK.watchAuthState()
       .receive(on: RunLoop.main)
       .sink { isSignedIn in
-        self.authContainerView.isHidden = isSignedIn
+        if isSignedIn {
+          if self.presentedViewController is AuthViewController {
+            self.dismiss(animated: true)
+          }
+        } else {
+          self.performSegue(withIdentifier: "showAuth", sender: self)
+        }
       }.store(in: &cancellableSet)
   }
 }
