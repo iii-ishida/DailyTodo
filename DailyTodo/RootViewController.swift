@@ -6,13 +6,21 @@
 //  Copyright © 2020 ishida. All rights reserved.
 //
 
+import Combine
+import DailyTodoSDK
 import UIKit
 
 class RootViewController: UIViewController {
+  private var cancellableSet: Set<AnyCancellable> = []
+  @IBOutlet weak var authContainerView: UIView!
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view.
-  }
 
+    DailyTodoSDK.watchAuthState()
+      .receive(on: RunLoop.main)
+      .sink { isSignedIn in
+        self.authContainerView.isHidden = isSignedIn
+      }.store(in: &cancellableSet)
+  }
 }
