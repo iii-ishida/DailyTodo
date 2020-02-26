@@ -31,6 +31,14 @@ public enum AuthError: Error {
 
 /// the entry point of DailyTodoSDK.
 public enum DailyTodoSDK {
+  private static var authStatePublisher: AnyPublisher<Bool, Never> {
+    let pub = PassthroughSubject<Bool, Never>()
+    Auth.auth().addStateDidChangeListener { _, user in
+      pub.send(user != nil)
+    }
+    return pub.eraseToAnyPublisher()
+  }
+
   /// initialize DailyTodoSDK.
   public static func initialize() {
     FirebaseApp.configure()
@@ -72,5 +80,15 @@ public enum DailyTodoSDK {
       }
     }
     return AnyPublisher(future)
+  }
+
+  /// Signs out the current user.
+  public static func signOut() throws {
+    try Auth.auth().signOut()
+  }
+
+  /// Watch an auth state change.
+  public static func watchAuthState() -> AnyPublisher<Bool, Never> {
+    return authStatePublisher
   }
 }
