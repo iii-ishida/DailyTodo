@@ -14,7 +14,21 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AQs-bb-gIL">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <connections>
+                                    <segue destination="zM0-f7-l8w" kind="embed" id="0S2-K2-hqr"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="AQs-bb-gIL" secondAttribute="bottom" id="6xS-K9-nz5"/>
+                            <constraint firstItem="AQs-bb-gIL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Oov-IW-LX3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AQs-bb-gIL" secondAttribute="trailing" id="ich-Ed-rDi"/>
+                            <constraint firstItem="AQs-bb-gIL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="oAS-3C-ycp"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
@@ -125,5 +139,65 @@
             </objects>
             <point key="canvasLocation" x="520" y="-32"/>
         </scene>
+        <!--設定-->
+        <scene sceneID="Jkp-7N-Xkj">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EcA-wk-lba" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="ck9-86-BKY" customClass="SettingViewController" customModule="DailyTodo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="z6i-ko-0pH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0sQ-EJ-z94">
+                                <rect key="frame" x="16" y="686" width="382" height="44"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="nnc-dP-6VJ"/>
+                                </constraints>
+                                <state key="normal" title="ログアウト">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onSignOut:" destination="ck9-86-BKY" eventType="touchUpInside" id="s1X-Fd-iQQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="0sQ-EJ-z94" secondAttribute="bottom" constant="88" id="CDT-NN-3a5"/>
+                            <constraint firstItem="0sQ-EJ-z94" firstAttribute="leading" secondItem="z6i-ko-0pH" secondAttribute="leading" constant="16" id="LGN-yO-Z55"/>
+                            <constraint firstAttribute="trailing" secondItem="0sQ-EJ-z94" secondAttribute="trailing" constant="16" id="qo2-i1-HFV"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="設定" image="gear" catalog="system" id="qLg-4z-DXK"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1428.985507246377" y="617.41071428571422"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="XwP-ur-QAy">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="moy-3F-TK5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="zM0-f7-l8w" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2g2-Dg-VNH">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="ck9-86-BKY" kind="relationship" relationship="viewControllers" id="9kE-OQ-1fM"/>
+                    </connections>
+                </tabBarController>
+            </objects>
+            <point key="canvasLocation" x="520.28985507246375" y="617.41071428571422"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="gear" catalog="system" width="64" height="58"/>
+    </resources>
 </document>
