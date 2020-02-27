@@ -15,6 +15,8 @@
 		62576AFD2404032600C5CC66 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62576AFC2404032600C5CC66 /* AuthViewController.swift */; };
 		62576B002404055D00C5CC66 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62576AFF2404055D00C5CC66 /* UIViewExtension.swift */; };
 		626282302407B5C8006128BB /* DailyTodoSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6262822F2407B5C8006128BB /* DailyTodoSDK.swift */; };
+		626282342407B97C006128BB /* DailyTodoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626282332407B97C006128BB /* DailyTodoAPI.swift */; };
+		626282362407B9A8006128BB /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626282352407B9A8006128BB /* Todo.swift */; };
 		62675B8F240390A6003344D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62675B8E240390A6003344D7 /* AppDelegate.swift */; };
 		62675B91240390A6003344D7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62675B90240390A6003344D7 /* SceneDelegate.swift */; };
 		62675B93240390A6003344D7 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62675B92240390A6003344D7 /* RootViewController.swift */; };
@@ -94,6 +96,8 @@
 		62576AFC2404032600C5CC66 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		62576AFF2404055D00C5CC66 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		6262822F2407B5C8006128BB /* DailyTodoSDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTodoSDK.swift; sourceTree = "<group>"; };
+		626282332407B97C006128BB /* DailyTodoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTodoAPI.swift; sourceTree = "<group>"; };
+		626282352407B9A8006128BB /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		62675B8B240390A6003344D7 /* DailyTodo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyTodo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62675B8E240390A6003344D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62675B90240390A6003344D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -249,7 +253,9 @@
 			isa = PBXGroup;
 			children = (
 				6262822F2407B5C8006128BB /* DailyTodoSDK.swift */,
+				626282332407B97C006128BB /* DailyTodoAPI.swift */,
 				62C6286F24039A0E001193F0 /* DailyTodoAuth.swift */,
+				626282352407B9A8006128BB /* Todo.swift */,
 				62675BBE240390D6003344D7 /* GoogleService-Info.plist */,
 				62C6285424039897001193F0 /* Info.plist */,
 			);
@@ -666,7 +672,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				626282302407B5C8006128BB /* DailyTodoSDK.swift in Sources */,
+				626282342407B97C006128BB /* DailyTodoAPI.swift in Sources */,
 				62C6287024039A0E001193F0 /* DailyTodoAuth.swift in Sources */,
+				626282362407B9A8006128BB /* Todo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

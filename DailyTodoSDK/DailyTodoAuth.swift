@@ -12,6 +12,12 @@ import Foundation
 
 /// Manages authentication for DailyTodo.
 public enum DailyTodoAuth {
+  static var idToken: String? = nil
+
+  static var userId: String? {
+    Auth.auth().currentUser?.uid
+  }
+
   private static var authStatePublisher: AnyPublisher<Bool, Never> {
     let pub = PassthroughSubject<Bool, Never>()
     Auth.auth().addStateDidChangeListener { _, user in
