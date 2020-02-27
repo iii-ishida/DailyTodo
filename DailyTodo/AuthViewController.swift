@@ -32,9 +32,9 @@ class AuthViewController: UIViewController {
 
     var publisher: AnyPublisher<String, Error>
     if signUpMode {
-      publisher = DailyTodoSDK.signUp(withEmail: email, password: password)
+      publisher = DailyTodoAuth.signUp(withEmail: email, password: password)
     } else {
-      publisher = DailyTodoSDK.signIn(withEmail: email, password: password)
+      publisher = DailyTodoAuth.signIn(withEmail: email, password: password)
     }
 
     publisher

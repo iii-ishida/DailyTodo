@@ -16,7 +16,7 @@ class RootViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    DailyTodoSDK.watchAuthState()
+    DailyTodoAuth.watchAuthState()
       .receive(on: RunLoop.main)
       .sink { isSignedIn in
         if isSignedIn {

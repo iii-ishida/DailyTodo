@@ -13,7 +13,7 @@ class SettingViewController: UIViewController {
 
   @IBAction func onSignOut(_ sender: UIButton) {
     do {
-      try DailyTodoSDK.signOut()
+      try DailyTodoAuth.signOut()
     } catch {
       let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
       alert.addAction(.ok)
