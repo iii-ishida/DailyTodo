@@ -35,9 +35,32 @@ public struct Todo: Hashable {
     self.updatedAt = nil
   }
 
+  private init(id: String, title: String, done: Bool, order: Int, updatedAt: Date?) {
+    self.id = id
+    self.title = title
+    self.done = done
+    self.order = order
+    self.updatedAt = updatedAt
+  }
+
   /// Hashes the essential components of this value by feeding them into the given hasher.
   public func hash(into hasher: inout Hasher) {
     hasher.combine(id)
+  }
+}
+
+// MARK: Todo List
+extension Todo {
+  /// Reorder todoList.
+  public static func reorderTodoList(_ todoList: [Todo], from: Int, to: Int) -> [Todo] {
+    var reordered = todoList
+    let todo = reordered.remove(at: from)
+    reordered.insert(todo, at: to)
+
+    return reordered.enumerated().map { arg in
+      let (index, todo) = arg
+      return Todo(id: todo.id, title: todo.title, done: todo.done, order: index, updatedAt: todo.updatedAt)
+    }
   }
 }
 

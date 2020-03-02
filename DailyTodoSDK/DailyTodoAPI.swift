@@ -62,6 +62,34 @@ public enum DailyTodoAPI {
     }.eraseToAnyPublisher()
   }
 
+  /// reorder todo list and update the store.
+  public static func updateReorderedTodoList(todoList: [Todo], from: Int, to: Int) -> AnyPublisher<Any, Error> {
+    guard let userId = userId else {
+      return authErrorFuture()
+    }
+
+    let reordered = Todo.reorderTodoList(todoList, from: from, to: to)
+
+    let batch = db.batch()
+    reordered.forEach { todo in
+      let oldTodo = todoList.first { old in old.id == todo.id }
+      guard let old = oldTodo, todo.order != old.order else { return }
+
+      let doc = todoCollection(withUserId: userId).document(todo.id)
+      batch.updateData(["order": todo.order], forDocument: doc)
+    }
+
+    return Future<Any, Error> { promise in
+      batch.commit {
+        if let error = $0 {
+          promise(.failure(error))
+        } else {
+          promise(.success(true))
+        }
+      }
+    }.eraseToAnyPublisher()
+  }
+
   private static func todoCollection(withUserId userId: String) -> CollectionReference {
     db.collection("users/\(userId)/todos")
   }
