@@ -62,6 +62,23 @@ public enum DailyTodoAPI {
     }.eraseToAnyPublisher()
   }
 
+  /// Update the title of a Todo.
+  public static func updateTodoWithId(_ id: String, title: String) -> AnyPublisher<Any, Error> {
+    guard let userId = userId else {
+      return authErrorFuture()
+    }
+
+    return Future<Any, Error> { promise in
+      todoCollection(withUserId: userId).document(id).setData(["title": title, "updatedAt": FieldValue.serverTimestamp()], merge: true) {
+        if let error = $0 {
+          promise(.failure(error))
+        } else {
+          promise(.success(true))
+        }
+      }
+    }.eraseToAnyPublisher()
+  }
+
   /// reorder todo list and update the store.
   public static func updateReorderedTodoList(todoList: [Todo], from: Int, to: Int) -> AnyPublisher<Any, Error> {
     guard let userId = userId else {
