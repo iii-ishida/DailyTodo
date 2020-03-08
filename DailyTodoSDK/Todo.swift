@@ -43,9 +43,21 @@ public struct Todo: Hashable {
     self.updatedAt = updatedAt
   }
 
+  /// Update the todo with a title.
+  public func updated(withTitle newTitle: String) -> Todo {
+    Todo(id: id, title: newTitle, done: done, order: order, updatedAt: updatedAt)
+  }
+
   /// Hashes the essential components of this value by feeding them into the given hasher.
   public func hash(into hasher: inout Hasher) {
     hasher.combine(id)
+  }
+}
+
+extension Todo {
+  /// emtpy Todo.
+  public static var empty: Todo {
+    Todo(id: "", title: "", done: false, order: 0, updatedAt: nil)
   }
 }
 

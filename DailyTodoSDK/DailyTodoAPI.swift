@@ -13,6 +13,7 @@ import Foundation
 public enum DailyTodoAPI {
   private enum APIError: Error {
     case unauthorized
+    case unknown
   }
 
   private static let db = Firestore.firestore()
@@ -43,6 +44,29 @@ public enum DailyTodoAPI {
       receiveCompletion: { _ in listener.remove() },
       receiveCancel: { listener.remove() }
     ).eraseToAnyPublisher()
+  }
+
+  /// Get next order for Todo list.
+  public static func nextOrder() -> AnyPublisher<Int, Error> {
+    guard let userId = userId else {
+      return authErrorFuture()
+    }
+
+    return Future<Int, Error> { promise in
+      todoCollection(withUserId: userId).order(by: "order", descending: true).limit(to: 1).getDocuments { querySnapshot, error in
+        if let error = error {
+          promise(.failure(error))
+          return
+        }
+
+        guard let documents = querySnapshot?.documents, let todo = Todo(firebaseDocument: documents[0]) else {
+          promise(.failure(APIError.unknown))
+          return
+        }
+
+        promise(.success(todo.order + 1))
+      }
+    }.eraseToAnyPublisher()
   }
 
   /// Add a Todo.
