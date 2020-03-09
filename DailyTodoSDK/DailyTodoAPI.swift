@@ -131,6 +131,23 @@ public enum DailyTodoAPI {
     }.eraseToAnyPublisher()
   }
 
+  /// Delete a todo.
+  public static func deleteTodo(_ todo: Todo) -> AnyPublisher<Any, Error> {
+    guard let userId = userId else {
+      return authErrorFuture()
+    }
+
+    return Future<Any, Error> { promise in
+      todoCollection(withUserId: userId).document(todo.id).delete {
+        if let error = $0 {
+          promise(.failure(error))
+        } else {
+          promise(.success(true))
+        }
+      }
+    }.eraseToAnyPublisher()
+  }
+
   private static func todoCollection(withUserId userId: String) -> CollectionReference {
     db.collection("users/\(userId)/todos")
   }
