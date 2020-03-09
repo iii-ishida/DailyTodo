@@ -139,11 +139,10 @@
             </objects>
             <point key="canvasLocation" x="520" y="-32"/>
         </scene>
-        <!--設定-->
+        <!--Settings-->
         <scene sceneID="Jkp-7N-Xkj">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EcA-wk-lba" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController id="ck9-86-BKY" customClass="SettingViewController" customModule="DailyTodo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ck9-86-BKY" userLabel="Settings" customClass="SettingViewController" customModule="DailyTodo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="z6i-ko-0pH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -173,31 +172,116 @@
                             <constraint firstItem="0sQ-EJ-z94" firstAttribute="leading" secondItem="z6i-ko-0pH" secondAttribute="leading" constant="16" id="LGN-yO-Z55"/>
                             <constraint firstAttribute="trailing" secondItem="0sQ-EJ-z94" secondAttribute="trailing" constant="16" id="qo2-i1-HFV"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="Aym-VG-UR5"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="設定" image="gear" catalog="system" id="qLg-4z-DXK"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EcA-wk-lba" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1428.985507246377" y="617.41071428571422"/>
+            <point key="canvasLocation" x="1896" y="1027"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="XwP-ur-QAy">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="moy-3F-TK5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="zM0-f7-l8w" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2g2-Dg-VNH">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
+                        <segue destination="ozA-DD-RIy" kind="relationship" relationship="viewControllers" id="zHS-mf-2G5"/>
                         <segue destination="ck9-86-BKY" kind="relationship" relationship="viewControllers" id="9kE-OQ-1fM"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="moy-3F-TK5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="520.28985507246375" y="617.41071428571422"/>
+        </scene>
+        <!--Edit Todo-->
+        <scene sceneID="FRV-hu-IOp">
+            <objects>
+                <viewController id="lUe-pZ-WPN" userLabel="Edit Todo" customClass="EditTodoViewController" customModule="DailyTodo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="flU-AI-QXV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qo0-Bc-MNu">
+                                <rect key="frame" x="0.0" y="88" width="414" height="681"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditableTodoCell" id="Gie-Tx-H78" customClass="EditableTodoCell" customModule="DailyTodo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="57.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gie-Tx-H78" id="byS-7S-Hnz">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="57.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ydj-qr-ffj">
+                                                    <rect key="frame" x="20" y="20.5" width="374" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <action selector="onDoneEditing:" destination="Gie-Tx-H78" eventType="primaryActionTriggered" id="Frh-1k-PT3"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Ydj-qr-ffj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="byS-7S-Hnz" secondAttribute="top" constant="20" symbolic="YES" id="99g-Na-Pct"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ydj-qr-ffj" secondAttribute="bottom" id="gdP-dz-4gm"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Ydj-qr-ffj" secondAttribute="trailing" id="reC-vq-zCE"/>
+                                                <constraint firstItem="Ydj-qr-ffj" firstAttribute="leading" secondItem="byS-7S-Hnz" secondAttribute="leadingMargin" id="vla-tp-hxL"/>
+                                                <constraint firstItem="Ydj-qr-ffj" firstAttribute="centerY" secondItem="byS-7S-Hnz" secondAttribute="centerY" id="zGE-P8-hZR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="titleTextField" destination="Ydj-qr-ffj" id="Nmq-gw-yBL"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="dZb-ju-aoK" firstAttribute="bottom" secondItem="qo0-Bc-MNu" secondAttribute="bottom" id="3VZ-DR-mLG"/>
+                            <constraint firstItem="qo0-Bc-MNu" firstAttribute="leading" secondItem="dZb-ju-aoK" secondAttribute="leading" id="AjZ-6Z-jXc"/>
+                            <constraint firstItem="dZb-ju-aoK" firstAttribute="trailing" secondItem="qo0-Bc-MNu" secondAttribute="trailing" id="mAA-TX-54i"/>
+                            <constraint firstItem="qo0-Bc-MNu" firstAttribute="top" secondItem="dZb-ju-aoK" secondAttribute="top" id="nv0-JE-FIn"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dZb-ju-aoK"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit Todo" id="VDc-1g-z7R"/>
+                    <connections>
+                        <outlet property="tableView" destination="qo0-Bc-MNu" id="WKE-p1-iMf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lIl-2v-zJk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2802.898550724638" y="400.44642857142856"/>
+        </scene>
+        <!--編集-->
+        <scene sceneID="ad8-qB-5QK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ozA-DD-RIy" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="編集" image="pencil" catalog="system" id="7Kq-5i-BBf"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pUt-Hc-9aG">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="lUe-pZ-WPN" kind="relationship" relationship="rootViewController" id="v7Q-Bu-eJW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WHO-j6-nil" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1895.6521739130437" y="400.44642857142856"/>
         </scene>
     </scenes>
     <resources>
         <image name="gear" catalog="system" width="64" height="58"/>
+        <image name="pencil" catalog="system" width="64" height="56"/>
     </resources>
 </document>
