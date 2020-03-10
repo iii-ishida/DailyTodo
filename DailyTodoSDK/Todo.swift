@@ -17,9 +17,6 @@ public struct Todo: Hashable {
   /// titile.
   public let title: String
 
-  /// done.
-  public let done: Bool
-
   /// order.
   public let order: Int
 
@@ -27,25 +24,23 @@ public struct Todo: Hashable {
   public let updatedAt: Date?
 
   /// initialize a Todo.
-  public init(title: String, order: Int, done: Bool = false) {
+  public init(title: String, order: Int) {
     self.id = ""
     self.title = title
-    self.done = done
     self.order = order
     self.updatedAt = nil
   }
 
-  private init(id: String, title: String, done: Bool, order: Int, updatedAt: Date?) {
+  private init(id: String, title: String, order: Int, updatedAt: Date?) {
     self.id = id
     self.title = title
-    self.done = done
     self.order = order
     self.updatedAt = updatedAt
   }
 
   /// Update the todo with a title.
   public func updated(withTitle newTitle: String) -> Todo {
-    Todo(id: id, title: newTitle, done: done, order: order, updatedAt: updatedAt)
+    Todo(id: id, title: newTitle, order: order, updatedAt: updatedAt)
   }
 
   /// Hashes the essential components of this value by feeding them into the given hasher.
@@ -57,7 +52,7 @@ public struct Todo: Hashable {
 extension Todo {
   /// emtpy Todo.
   public static var empty: Todo {
-    Todo(id: "", title: "", done: false, order: 0, updatedAt: nil)
+    Todo(id: "", title: "", order: 0, updatedAt: nil)
   }
 }
 
@@ -71,7 +66,7 @@ extension Todo {
 
     return reordered.enumerated().map { arg in
       let (index, todo) = arg
-      return Todo(id: todo.id, title: todo.title, done: todo.done, order: index, updatedAt: todo.updatedAt)
+      return Todo(id: todo.id, title: todo.title, order: index, updatedAt: todo.updatedAt)
     }
   }
 }
@@ -88,7 +83,6 @@ extension Todo {
     id = document.documentID
     title = data["title"] as? String ?? ""
     order = data["order"] as? Int ?? 0
-    done = data["done"] as? Bool == true
     updatedAt = (data["updatedAt"] as? Timestamp)?.dateValue()
   }
 
@@ -96,7 +90,6 @@ extension Todo {
     [
       "title": title,
       "order": order,
-      "done": done,
       "updatedAt": FieldValue.serverTimestamp(),
     ]
   }
