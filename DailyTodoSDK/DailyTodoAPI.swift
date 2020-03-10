@@ -87,7 +87,7 @@ public enum DailyTodoAPI {
   }
 
   /// Update the title of a Todo.
-  public static func updateTodoWithId(_ id: String, title: String) -> AnyPublisher<Any, Error> {
+  public static func updateTodo(withId id: String, title: String) -> AnyPublisher<Any, Error> {
     guard let userId = userId else {
       return authErrorFuture()
     }

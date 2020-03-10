@@ -97,13 +97,13 @@ extension EditTodoViewController: EditableTodoCellDelegate {
     guard todo.title != newTitle else { return }
 
     if cell.isNew {
-      addTodoWithTitle(newTitle)
+      addTodo(withTitle: newTitle)
     } else {
       updateTodo(todo.updated(withTitle: newTitle))
     }
   }
 
-  private func addTodoWithTitle(_ title: String) {
+  private func addTodo(withTitle title: String) {
     DailyTodoAPI.nextOrder()
       .map { Todo(title: title, order: $0) }
       .map { DailyTodoAPI.addTodo(todo: $0) }
@@ -114,7 +114,7 @@ extension EditTodoViewController: EditableTodoCellDelegate {
   }
 
   private func updateTodo(_ todo: Todo) {
-    DailyTodoAPI.updateTodoWithId(todo.id, title: todo.title).sink(
+    DailyTodoAPI.updateTodo(withId: todo.id, title: todo.title).sink(
       receiveCompletion: { _ in },
       receiveValue: { _ in }
     ).store(in: &cancellableSet)
