@@ -12,7 +12,7 @@
   "maximumBlankLines" : 1,
   "respectsExistingLineBreaks" : true,
   "rules" : {
-    "AllPublicDeclarationsHaveDocumentation" : true,
+    "AllPublicDeclarationsHaveDocumentation" : false,
     "AlwaysUseLowerCamelCase" : true,
     "AmbiguousTrailingClosureOverload" : true,
     "BeginDocumentationCommentWithOneLineSummary" : true,
