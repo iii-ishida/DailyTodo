@@ -33,6 +33,7 @@
 		62C6286624039897001193F0 /* DailyTodoSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62C6285124039897001193F0 /* DailyTodoSDK.framework */; };
 		62C6286724039897001193F0 /* DailyTodoSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 62C6285124039897001193F0 /* DailyTodoSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		62C6287024039A0E001193F0 /* DailyTodoAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C6286F24039A0E001193F0 /* DailyTodoAuth.swift */; };
+		62EEA863241FA07E003B46D7 /* DailyTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62EEA862241FA07E003B46D7 /* DailyTodo.swift */; };
 		8F870B053EBAE65CA116EDC9 /* Pods_DailyTodo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC7C4FB9C1F7B87018022624 /* Pods_DailyTodo.framework */; };
 		DF230A20A4A722D0352066F3 /* Pods_DailyTodo_DailyTodoSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 024C2DE88F768E7B65A7EEB1 /* Pods_DailyTodo_DailyTodoSDK.framework */; };
 /* End PBXBuildFile section */
@@ -123,6 +124,7 @@
 		62C6286024039897001193F0 /* DailyTodoSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTodoSDKTests.swift; sourceTree = "<group>"; };
 		62C6286224039897001193F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62C6286F24039A0E001193F0 /* DailyTodoAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTodoAuth.swift; sourceTree = "<group>"; };
+		62EEA862241FA07E003B46D7 /* DailyTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTodo.swift; sourceTree = "<group>"; };
 		6B778A873F47CB034F4C4605 /* Pods-DailyTodoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyTodoTests.release.xcconfig"; path = "Target Support Files/Pods-DailyTodoTests/Pods-DailyTodoTests.release.xcconfig"; sourceTree = "<group>"; };
 		8852DC88C7B5F0F12EE09A35 /* Pods-DailyTodo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyTodo.debug.xcconfig"; path = "Target Support Files/Pods-DailyTodo/Pods-DailyTodo.debug.xcconfig"; sourceTree = "<group>"; };
 		8C8FB8D462DC6C11F33757F7 /* Pods-DailyTodo-DailyTodoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyTodo-DailyTodoUITests.release.xcconfig"; path = "Target Support Files/Pods-DailyTodo-DailyTodoUITests/Pods-DailyTodo-DailyTodoUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				6262822F2407B5C8006128BB /* DailyTodoSDK.swift */,
 				626282332407B97C006128BB /* DailyTodoAPI.swift */,
 				62C6286F24039A0E001193F0 /* DailyTodoAuth.swift */,
+				62EEA862241FA07E003B46D7 /* DailyTodo.swift */,
 				626282352407B9A8006128BB /* Todo.swift */,
 				62675BBE240390D6003344D7 /* GoogleService-Info.plist */,
 				62C6285424039897001193F0 /* Info.plist */,
@@ -687,6 +690,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62EEA863241FA07E003B46D7 /* DailyTodo.swift in Sources */,
 				626282302407B5C8006128BB /* DailyTodoSDK.swift in Sources */,
 				626282342407B97C006128BB /* DailyTodoAPI.swift in Sources */,
 				62C6287024039A0E001193F0 /* DailyTodoAuth.swift in Sources */,

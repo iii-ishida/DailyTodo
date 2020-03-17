@@ -156,3 +156,83 @@ public enum DailyTodoAPI {
     Future<T, Error> { $0(.failure(APIError.unauthorized)) }.eraseToAnyPublisher()
   }
 }
+
+extension DailyTodoAPI {
+  public static func createDailyTodoIfNeeded(date: Date) -> AnyPublisher<Any, Error> {
+    guard let userId = userId else {
+      return authErrorFuture()
+    }
+
+    return hasDailyTodo(withUserId: userId, date: date)
+      .flatMap { hasDailyTodo -> AnyPublisher<Any, Error> in
+        if hasDailyTodo {
+          return Empty().eraseToAnyPublisher()
+        } else {
+          return copyDailyTodo(withUserId: userId, date: date)
+        }
+      }.eraseToAnyPublisher()
+  }
+
+  private static func copyDailyTodo(withUserId userId: String, date: Date) -> AnyPublisher<Any, Error> {
+    let getTodos = Future<[Todo], Error> { promise in
+      todoCollection(withUserId: userId).getDocuments { querySnapshot, error in
+        if let error = error {
+          promise(.failure(error))
+          return
+        }
+
+        guard let documents = querySnapshot?.documents else {
+          promise(.failure(APIError.unknown))
+          return
+        }
+        promise(.success(Todo.from(firestoreDocuments: documents)))
+      }
+    }.eraseToAnyPublisher()
+
+    return getTodos.flatMap { todos -> AnyPublisher<Any, Error> in
+      let dailyTodos = DailyTodo.from(todos: todos, date: date)
+      return putDailyTodos(withUserId: userId, date: date, dailyTodos: dailyTodos)
+    }.eraseToAnyPublisher()
+  }
+
+  private static func putDailyTodos(withUserId userId: String, date: Date, dailyTodos: [DailyTodo]) -> AnyPublisher<Any, Error> {
+    let batch = db.batch()
+    let collection = dailyTodoCollection(withUserId: userId, date: date)
+    dailyTodos.forEach {
+      let ref = collection.document($0.id)
+      batch.setData($0.documentValue, forDocument: ref)
+    }
+
+    return Future<Any, Error> { promise in
+      batch.commit { error in
+        if let error = error {
+          promise(.failure(error))
+        } else {
+          promise(.success(true))
+        }
+      }
+    }.eraseToAnyPublisher()
+  }
+
+  private static func hasDailyTodo(withUserId userId: String, date: Date) -> AnyPublisher<Bool, Error> {
+    return Future<Bool, Error> { promise in
+      dailyTodoCollection(withUserId: userId, date: date).limit(to: 1).getDocuments { querySnapshot, error in
+        if let error = error {
+          promise(.failure(error))
+          return
+        }
+
+        let existsDailyTodo = querySnapshot?.documents.count ?? 0 > 0
+        promise(.success(existsDailyTodo))
+      }
+    }.eraseToAnyPublisher()
+  }
+
+  private static func dailyTodoCollection(withUserId userId: String, date: Date) -> CollectionReference {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyyMMdd"
+
+    let yyyymmdd = formatter.string(from: date)
+    return db.collection("users/\(userId)/dailyTodos-\(yyyymmdd)")
+  }
+}
