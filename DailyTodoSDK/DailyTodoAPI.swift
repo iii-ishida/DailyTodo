@@ -158,6 +158,30 @@ public enum DailyTodoAPI {
 }
 
 extension DailyTodoAPI {
+  /// Watch modify events for Todos.
+  public static func watchDailyTodoList(date: Date) -> AnyPublisher<[DailyTodo], Error> {
+    guard let userId = userId else {
+      return authErrorFuture()
+    }
+
+    let sub = PassthroughSubject<[DailyTodo], Error>()
+    let listener = dailyTodoCollection(withUserId: userId, date: date).order(by: "order").addSnapshotListener { querySnapshot, error in
+      if let error = error {
+        sub.send(completion: .failure(error))
+        return
+      }
+
+      guard let documents = querySnapshot?.documents else { return }
+
+      sub.send(DailyTodo.from(firestoreDocuments: documents))
+    }
+
+    return sub.handleEvents(
+      receiveCompletion: { _ in listener.remove() },
+      receiveCancel: { listener.remove() }
+    ).eraseToAnyPublisher()
+  }
+
   public static func createDailyTodoIfNeeded(date: Date) -> AnyPublisher<Any, Error> {
     guard let userId = userId else {
       return authErrorFuture()
@@ -166,11 +190,43 @@ extension DailyTodoAPI {
     return hasDailyTodo(withUserId: userId, date: date)
       .flatMap { hasDailyTodo -> AnyPublisher<Any, Error> in
         if hasDailyTodo {
-          return Empty().eraseToAnyPublisher()
+          return Just<Any>(true).setFailureType(to: Error.self).eraseToAnyPublisher()
         } else {
           return copyDailyTodo(withUserId: userId, date: date)
         }
       }.eraseToAnyPublisher()
+  }
+
+  public static func doneDailyTodo(dailyTodo: DailyTodo) -> AnyPublisher<Any, Error> {
+    guard let userId = userId else {
+      return authErrorFuture()
+    }
+
+    return Future<Any, Error> { promise in
+      dailyTodoCollection(withUserId: userId, date: dailyTodo.date).document(dailyTodo.id).setData(["done": true, "doneAt": FieldValue.serverTimestamp()], merge: true) {
+        if let error = $0 {
+          promise(.failure(error))
+        } else {
+          promise(.success(true))
+        }
+      }
+    }.eraseToAnyPublisher()
+  }
+
+  public static func undoneDailyTodo(dailyTodo: DailyTodo) -> AnyPublisher<Any, Error> {
+    guard let userId = userId else {
+      return authErrorFuture()
+    }
+
+    return Future<Any, Error> { promise in
+      dailyTodoCollection(withUserId: userId, date: dailyTodo.date).document(dailyTodo.id).setData(["done": false, "doneAt": NSNull()], merge: true) {
+        if let error = $0 {
+          promise(.failure(error))
+        } else {
+          promise(.success(true))
+        }
+      }
+    }.eraseToAnyPublisher()
   }
 
   private static func copyDailyTodo(withUserId userId: String, date: Date) -> AnyPublisher<Any, Error> {
