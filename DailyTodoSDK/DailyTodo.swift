@@ -9,9 +9,11 @@
 import Firebase
 import Foundation
 
-public struct DailyTodo {
+public struct DailyTodo: Hashable {
   /// id.
   public let id: String
+
+  public let date: Date
 
   /// titile.
   public let title: String
@@ -25,8 +27,11 @@ public struct DailyTodo {
   /// doneAt.
   private(set) public var doneAt: Date?
 
-  private init(todo: Todo, yyyymmdd: String) {
+  private init(todo: Todo, date: Date) {
+    let yyyymmdd = Self.dateFormatter.string(from: date)
+
     self.id = "\(yyyymmdd)-\(todo.id)"
+    self.date = date
     self.title = todo.title
     self.order = todo.order
     self.done = false
@@ -34,13 +39,17 @@ public struct DailyTodo {
   }
 
   public static func from(todos: [Todo], date: Date) -> [DailyTodo] {
-    let yyyymmdd = Self.dateFormatter.string(from: date)
-    return todos.map { DailyTodo(todo: $0, yyyymmdd: yyyymmdd) }
+    return todos.map { DailyTodo(todo: $0, date: date) }
   }
 
   public mutating func done(doneAt: Date) {
     self.done = true
     self.doneAt = doneAt
+  }
+
+  /// Hashes the essential components of this value by feeding them into the given hasher.
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(id)
   }
 
   private static var dateFormatter: DateFormatter = {
@@ -56,15 +65,21 @@ extension DailyTodo {
     guard let data = document.data() else { return nil }
 
     id = document.documentID
+    date = (data["date"] as! Timestamp).dateValue()
     title = data["title"] as? String ?? ""
     order = data["order"] as? Int ?? 0
     done = data["done"] as? Bool ?? false
     doneAt = (data["doneAt"] as? Timestamp)?.dateValue()
   }
 
+  static func from(firestoreDocuments documents: [DocumentSnapshot]) -> [DailyTodo] {
+    documents.compactMap { DailyTodo(firebaseDocument: $0) }
+  }
+
   var documentValue: [String: Any] {
     [
       "title": title,
+      "date": date,
       "order": order,
       "done": done,
       "doneAt": doneAt ?? NSNull(),
