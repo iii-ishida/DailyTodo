@@ -28,6 +28,8 @@
 		62675BA6240390A7003344D7 /* DailyTodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62675BA5240390A7003344D7 /* DailyTodoTests.swift */; };
 		62675BB1240390A7003344D7 /* DailyTodoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62675BB0240390A7003344D7 /* DailyTodoUITests.swift */; };
 		62675BBF240390D6003344D7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 62675BBE240390D6003344D7 /* GoogleService-Info.plist */; };
+		62B9D7F42420F79600E065F4 /* DailyTodoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B9D7F32420F79600E065F4 /* DailyTodoCell.swift */; };
+		62B9D7F62420F7B400E065F4 /* DailyTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B9D7F52420F7B400E065F4 /* DailyTodoViewController.swift */; };
 		62C6285A24039897001193F0 /* DailyTodoSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62C6285124039897001193F0 /* DailyTodoSDK.framework */; };
 		62C6286124039897001193F0 /* DailyTodoSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C6286024039897001193F0 /* DailyTodoSDKTests.swift */; };
 		62C6286624039897001193F0 /* DailyTodoSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62C6285124039897001193F0 /* DailyTodoSDK.framework */; };
@@ -118,6 +120,8 @@
 		62675BB0240390A7003344D7 /* DailyTodoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTodoUITests.swift; sourceTree = "<group>"; };
 		62675BB2240390A7003344D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62675BBE240390D6003344D7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		62B9D7F32420F79600E065F4 /* DailyTodoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTodoCell.swift; sourceTree = "<group>"; };
+		62B9D7F52420F7B400E065F4 /* DailyTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTodoViewController.swift; sourceTree = "<group>"; };
 		62C6285124039897001193F0 /* DailyTodoSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DailyTodoSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62C6285424039897001193F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62C6285924039897001193F0 /* DailyTodoSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DailyTodoSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -232,6 +236,7 @@
 		62675B8D240390A6003344D7 /* DailyTodo */ = {
 			isa = PBXGroup;
 			children = (
+				62B9D7F22420F76C00E065F4 /* DailyTodo */,
 				626282392407ED1D006128BB /* EditTodo */,
 				62675B8E240390A6003344D7 /* AppDelegate.swift */,
 				62675B90240390A6003344D7 /* SceneDelegate.swift */,
@@ -263,6 +268,15 @@
 				62675BB2240390A7003344D7 /* Info.plist */,
 			);
 			path = DailyTodoUITests;
+			sourceTree = "<group>";
+		};
+		62B9D7F22420F76C00E065F4 /* DailyTodo */ = {
+			isa = PBXGroup;
+			children = (
+				62B9D7F52420F7B400E065F4 /* DailyTodoViewController.swift */,
+				62B9D7F32420F79600E065F4 /* DailyTodoCell.swift */,
+			);
+			path = DailyTodo;
 			sourceTree = "<group>";
 		};
 		62C6285224039897001193F0 /* DailyTodoSDK */ = {
@@ -659,6 +673,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6205F1982406924E005AB69E /* UIAlertActionExtension.swift in Sources */,
+				62B9D7F42420F79600E065F4 /* DailyTodoCell.swift in Sources */,
 				62576B002404055D00C5CC66 /* UIViewExtension.swift in Sources */,
 				6262823B2407ED5E006128BB /* EditableTodoCell.swift in Sources */,
 				626282382407EA2A006128BB /* EditTodoViewController.swift in Sources */,
@@ -667,6 +682,7 @@
 				62675B8F240390A6003344D7 /* AppDelegate.swift in Sources */,
 				6205F19C24069E23005AB69E /* SettingViewController.swift in Sources */,
 				62675B91240390A6003344D7 /* SceneDelegate.swift in Sources */,
+				62B9D7F62420F7B400E065F4 /* DailyTodoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
