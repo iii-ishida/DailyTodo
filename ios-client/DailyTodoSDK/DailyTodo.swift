@@ -13,6 +13,10 @@ public struct DailyTodo: Hashable {
   /// id.
   public let id: String
 
+  /// original Todo Id.
+  public let origintlId: String
+
+  /// date.
   public let date: Date
 
   /// titile.
@@ -31,6 +35,7 @@ public struct DailyTodo: Hashable {
     let yyyymmdd = Self.dateFormatter.string(from: date)
 
     self.id = "\(yyyymmdd)-\(todo.id)"
+    self.origintlId = todo.id
     self.date = date
     self.title = todo.title
     self.order = todo.order
@@ -65,6 +70,7 @@ extension DailyTodo {
     guard let data = document.data() else { return nil }
 
     id = document.documentID
+    origintlId = data["originalId"] as? String ?? ""
     date = (data["date"] as! Timestamp).dateValue()
     title = data["title"] as? String ?? ""
     order = data["order"] as? Int ?? 0
@@ -78,6 +84,7 @@ extension DailyTodo {
 
   var documentValue: [String: Any] {
     [
+      "originalId": origintlId,
       "title": title,
       "date": date,
       "order": order,
