@@ -289,6 +289,6 @@ extension DailyTodoAPI {
     formatter.dateFormat = "yyyyMMdd"
 
     let yyyymmdd = formatter.string(from: date)
-    return db.collection("users/\(userId)/dailyTodos-\(yyyymmdd)")
+    return db.collection("users/\(userId)/daily/todos/\(yyyymmdd)")
   }
 }
