@@ -81,15 +81,4 @@ extension DailyTodo {
   static func from(firestoreDocuments documents: [DocumentSnapshot]) -> [DailyTodo] {
     documents.compactMap { DailyTodo(firebaseDocument: $0) }
   }
-
-  var documentValue: [String: Any] {
-    [
-      "originalId": origintlId,
-      "title": title,
-      "date": date,
-      "order": order,
-      "done": done,
-      "doneAt": doneAt ?? NSNull(),
-    ]
-  }
 }

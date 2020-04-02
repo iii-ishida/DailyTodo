@@ -76,7 +76,13 @@ public enum DailyTodoAPI {
     }
 
     return Future<Any, Error> { promise in
-      todoCollection(withUserId: userId).addDocument(data: todo.documentValue) {
+      let data: [String: Any] = [
+        "title": todo.title,
+        "order": todo.order,
+        "updatedAt": FieldValue.serverTimestamp(),
+      ]
+
+      todoCollection(withUserId: userId).addDocument(data: data) {
         if let error = $0 {
           promise(.failure(error))
         } else {
@@ -256,7 +262,15 @@ extension DailyTodoAPI {
     let collection = dailyTodoCollection(withUserId: userId, date: date)
     dailyTodos.forEach {
       let ref = collection.document($0.id)
-      batch.setData($0.documentValue, forDocument: ref)
+      let data: [String: Any] = [
+        "originalId": $0.origintlId,
+        "title": $0.title,
+        "date": $0.date,
+        "order": $0.order,
+        "done": $0.done,
+        "doneAt": $0.doneAt ?? NSNull(),
+      ]
+      batch.setData(data, forDocument: ref)
     }
 
     return Future<Any, Error> { promise in

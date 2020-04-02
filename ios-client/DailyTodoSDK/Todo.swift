@@ -85,12 +85,4 @@ extension Todo {
     order = data["order"] as? Int ?? 0
     updatedAt = (data["updatedAt"] as? Timestamp)?.dateValue()
   }
-
-  var documentValue: [String: Any] {
-    [
-      "title": title,
-      "order": order,
-      "updatedAt": FieldValue.serverTimestamp(),
-    ]
-  }
 }
