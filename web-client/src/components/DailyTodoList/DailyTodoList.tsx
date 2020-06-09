@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { DailyTodoActions } from 'src/redux'
 import DailyTodoListItem from './DailyTodoListItem'
-import { watchDailyTodoList } from 'src/api'
+import { watchDailyTodoList } from 'src/repo'
 
 const DailyTodoList: React.FC = () => {
   const dispatch = useDispatch()
