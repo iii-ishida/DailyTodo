@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { DailyTodoActions } from 'src/redux'
 import DailyTodoListItem from './DailyTodoListItem'
-import { watchDailyTodoList } from 'src/repo'
+import { createDailyTodoIfNeeded, watchDailyTodoList } from 'src/repo'
 
 const DailyTodoList: React.FC = () => {
   const dispatch = useDispatch()
@@ -13,6 +13,15 @@ const DailyTodoList: React.FC = () => {
     if (!userId) {
       return
     }
+
+    createDailyTodoIfNeeded(userId, new Date())
+  }, [userId])
+
+  useEffect(() => {
+    if (!userId) {
+      return
+    }
+
     const subscription = watchDailyTodoList(userId, new Date()).subscribe((list) => dispatch(DailyTodoActions.recieve(list)))
 
     return () => subscription.unsubscribe()

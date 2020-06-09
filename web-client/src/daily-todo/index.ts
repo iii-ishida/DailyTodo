@@ -8,6 +8,20 @@ export interface DailyTodo {
   doneAt: string | null
 }
 
+export function fromTodo(todo: any, date: Date): DailyTodo {
+  const yyyymmdd = toYYYYMMDD(date)
+
+  return {
+    id: `${yyyymmdd}-${todo.id}`,
+    originalId: todo.id,
+    date: date.toISOString(),
+    title: todo.title,
+    order: todo.order,
+    done: false,
+    doneAt: null,
+  }
+}
+
 export function fromFirestoreDocument(data: any): DailyTodo {
   return {
     id: data.id,
@@ -18,4 +32,14 @@ export function fromFirestoreDocument(data: any): DailyTodo {
     done: data.done,
     doneAt: data.doneAt?.toDate().toISOString(),
   }
+}
+
+function toYYYYMMDD(date: Date): string {
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+
+  const zeroPad = (x) => (x >= 10 ? '' + x : '0' + x)
+
+  return `${year}${zeroPad(month)}${zeroPad(day)}`
 }
