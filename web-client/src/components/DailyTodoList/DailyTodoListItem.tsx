@@ -1,7 +1,7 @@
 import React from 'react'
 import { DailyTodo } from 'src/daily-todo'
 
-type Props = {
+interface Props {
   dailyTodo: DailyTodo
 }
 
