@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { UserActions } from 'src/redux'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import './App.css'
 
-import PrivateRoute from './PrivateRoute'
+import './App.css'
 import DailyTodoList from './DailyTodoList'
+import Loading from './Loading'
 import Login from './Login'
+import PrivateRoute from './PrivateRoute'
 import { onAuthStateChanged, signOut } from 'src/auth'
+import { UserActions } from 'src/redux'
 
 function useSignOut() {
   const dispatch = useDispatch()
@@ -18,6 +19,7 @@ function useSignOut() {
 }
 
 function useWatchAuthState() {
+  const [isLoaded, setLoaded] = useState(false)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -27,15 +29,22 @@ function useWatchAuthState() {
       } else {
         dispatch(UserActions.signOut())
       }
+      setLoaded(true)
     })
 
     return () => unsubscribe()
   }, [dispatch])
+
+  return isLoaded
 }
 
 const App: React.FC = () => {
   const signOut = useSignOut()
-  useWatchAuthState()
+  const isLoadedAuthState = useWatchAuthState()
+
+  if (!isLoadedAuthState) {
+    return <Loading />
+  }
 
   return (
     <Router>
