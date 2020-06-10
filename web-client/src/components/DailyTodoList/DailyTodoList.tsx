@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { DailyTodoActions } from 'src/redux'
 import DailyTodoListItem from './DailyTodoListItem'
+import { DailyTodo } from 'src/daily-todo'
+import { DailyTodoActions } from 'src/redux'
 import { createDailyTodoIfNeeded, watchDailyTodoList } from 'src/repo'
 
-const DailyTodoList: React.FC = () => {
+const Container: React.FC = () => {
   const dispatch = useDispatch()
   const userId = useSelector((state) => state.user?.id)
   const dailyTodoList = useSelector((state) => state.dailyTodoList)
@@ -27,15 +28,21 @@ const DailyTodoList: React.FC = () => {
     return () => subscription.unsubscribe()
   }, [dispatch, userId])
 
-  return (
-    <ul>
-      {dailyTodoList.map((todo) => (
-        <li key={todo.id}>
-          <DailyTodoListItem dailyTodo={todo} />
-        </li>
-      ))}
-    </ul>
-  )
+  return <DailyTodoList dailyTodoList={dailyTodoList} />
 }
 
-export default DailyTodoList
+interface Props {
+  dailyTodoList: DailyTodo[]
+}
+
+const DailyTodoList: React.FC<Props> = ({ dailyTodoList }: Props) => (
+  <ul>
+    {dailyTodoList.map((todo) => (
+      <li key={todo.id}>
+        <DailyTodoListItem dailyTodo={todo} />
+      </li>
+    ))}
+  </ul>
+)
+
+export default Container
