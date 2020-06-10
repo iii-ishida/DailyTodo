@@ -20,7 +20,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <Switch>
-        <PrivateRoute exact path="/" loginPath="/login">
+        <PrivateRoute exact path="/">
           <DailyTodoList />
           <button onClick={() => signOut()}>ログアウト</button>
         </PrivateRoute>

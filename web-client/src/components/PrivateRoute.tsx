@@ -2,11 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Route, Redirect, RouteProps } from 'react-router-dom'
 
-interface Props extends RouteProps {
-  loginPath: string
-}
-
-const PrivateRoute: React.FC<Props> = ({ children, loginPath, ...rest }: Props) => {
+const PrivateRoute: React.FC<RouteProps> = ({ children, ...rest }: RouteProps) => {
   const isSignedIn = useSelector((state) => !!state.user)
 
   return (
@@ -18,7 +14,7 @@ const PrivateRoute: React.FC<Props> = ({ children, loginPath, ...rest }: Props) 
         ) : (
           <Redirect
             to={{
-              pathname: loginPath,
+              pathname: '/login',
               state: { from: location },
             }}
           />
