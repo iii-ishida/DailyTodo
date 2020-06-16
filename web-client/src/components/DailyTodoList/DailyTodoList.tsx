@@ -5,7 +5,7 @@ import { DailyTodo } from 'src/daily-todo'
 import { DailyTodoActions } from 'src/redux'
 import { createDailyTodoIfNeeded, watchDailyTodoList } from 'src/repo'
 
-const Container: React.FC = () => {
+const DailyTodoListContainer: React.FC = () => {
   const dispatch = useDispatch()
   const userId = useSelector((state) => state.user?.id)
   const dailyTodoList = useSelector((state) => state.dailyTodoList)
@@ -45,4 +45,4 @@ const DailyTodoList: React.FC<Props> = ({ dailyTodoList }: Props) => (
   </ul>
 )
 
-export default Container
+export default DailyTodoListContainer
