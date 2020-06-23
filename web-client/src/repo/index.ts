@@ -3,7 +3,7 @@ import 'firebase/firestore'
 import { collectionData } from 'rxfire/firestore'
 import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs'
-import { DailyTodo, fromFirestoreDocument, fromTodo } from 'src/daily-todo'
+import { DailyTodo, Todo, fromFirestoreDocument, fromTodo, todoFromFirestoreDocument } from 'src/daily-todo'
 
 const db = firebase.firestore()
 
@@ -39,10 +39,6 @@ async function copyDailyTodo(userId: string, date: Date): Promise<void> {
   return batch.commit()
 }
 
-function todoCollection(userId: string): firebase.firestore.CollectionReference {
-  return db.collection(`users/${userId}/todos`)
-}
-
 function dailyTodoCollection(userId: string, date: Date): firebase.firestore.CollectionReference {
   return db.collection(`users/${userId}/daily/todos/${toYYYYMMDD(date)}`)
 }
@@ -55,4 +51,12 @@ function toYYYYMMDD(date: Date): string {
   const zeroPad = (x) => (x >= 10 ? '' + x : '0' + x)
 
   return `${year}${zeroPad(month)}${zeroPad(day)}`
+}
+
+export function watchTodoList(userId: string): Observable<Todo[]> {
+  return collectionData(todoCollection(userId), 'id').pipe(map((data) => data.map(todoFromFirestoreDocument)))
+}
+
+function todoCollection(userId: string): firebase.firestore.CollectionReference {
+  return db.collection(`users/${userId}/todos`)
 }

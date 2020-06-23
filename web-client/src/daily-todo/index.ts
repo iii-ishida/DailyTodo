@@ -43,3 +43,19 @@ function toYYYYMMDD(date: Date): string {
 
   return `${year}${zeroPad(month)}${zeroPad(day)}`
 }
+
+export interface Todo {
+  id: string
+  title: string
+  order: number
+  updatedAt: string
+}
+
+export function todoFromFirestoreDocument(data: any): Todo {
+  return {
+    id: data.id,
+    title: data.title,
+    order: data.order,
+    updatedAt: data.updatedAt?.toDate().toISOString(),
+  }
+}
