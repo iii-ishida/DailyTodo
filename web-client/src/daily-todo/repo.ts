@@ -3,12 +3,12 @@ import 'firebase/firestore'
 import { collectionData } from 'rxfire/firestore'
 import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs'
-import { DailyTodo, Todo, fromFirestoreDocument, fromTodo, todoFromFirestoreDocument } from 'src/daily-todo'
+import { DailyTodo, Todo, dailyTodoFromTodo, dailyTodoFromFirestoreDocument, todoFromFirestoreDocument } from 'src/daily-todo'
 
 const db = firebase.firestore()
 
 function watchDailyTodoList(userId: string, date: Date): Observable<DailyTodo[]> {
-  return collectionData(dailyTodoCollection(userId, date), 'id').pipe(map((data) => data.map(fromFirestoreDocument)))
+  return collectionData(dailyTodoCollection(userId, date), 'id').pipe(map((data) => data.map(dailyTodoFromFirestoreDocument)))
 }
 
 async function createDailyTodoIfNeeded(userId: string, date: Date): Promise<boolean> {
@@ -27,7 +27,7 @@ async function existsDailyTodo(userId: string, date: Date): Promise<boolean> {
 
 async function copyDailyTodo(userId: string, date: Date): Promise<void> {
   const querySnapshot = await todoCollection(userId).get()
-  const dailyTodos = querySnapshot.docs.map((doc) => fromTodo({ id: doc.id, ...doc.data() }, date))
+  const dailyTodos = querySnapshot.docs.map((doc) => dailyTodoFromTodo({ id: doc.id, ...doc.data() }, date))
 
   const batch = db.batch()
   const collection = dailyTodoCollection(userId, date)

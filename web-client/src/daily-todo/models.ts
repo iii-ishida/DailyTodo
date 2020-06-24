@@ -8,7 +8,7 @@ export interface DailyTodo {
   doneAt: string | null
 }
 
-export function fromTodo(todo: any, date: Date): DailyTodo {
+export function dailyTodoFromTodo(todo: any, date: Date): DailyTodo {
   const yyyymmdd = toYYYYMMDD(date)
 
   return {
@@ -22,7 +22,7 @@ export function fromTodo(todo: any, date: Date): DailyTodo {
   }
 }
 
-export function fromFirestoreDocument(data: any): DailyTodo {
+export function dailyTodoFromFirestoreDocument(data: any): DailyTodo {
   return {
     id: data.id,
     originalId: data.originalId,
@@ -59,4 +59,3 @@ export function todoFromFirestoreDocument(data: any): Todo {
     updatedAt: data.updatedAt?.toDate().toISOString(),
   }
 }
-
