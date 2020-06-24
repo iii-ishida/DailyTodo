@@ -7,11 +7,11 @@ import { DailyTodo, Todo, fromFirestoreDocument, fromTodo, todoFromFirestoreDocu
 
 const db = firebase.firestore()
 
-export function watchDailyTodoList(userId: string, date: Date): Observable<DailyTodo[]> {
+function watchDailyTodoList(userId: string, date: Date): Observable<DailyTodo[]> {
   return collectionData(dailyTodoCollection(userId, date), 'id').pipe(map((data) => data.map(fromFirestoreDocument)))
 }
 
-export async function createDailyTodoIfNeeded(userId: string, date: Date): Promise<boolean> {
+async function createDailyTodoIfNeeded(userId: string, date: Date): Promise<boolean> {
   if (await existsDailyTodo(userId, date)) {
     return false
   }
@@ -53,10 +53,19 @@ function toYYYYMMDD(date: Date): string {
   return `${year}${zeroPad(month)}${zeroPad(day)}`
 }
 
-export function watchTodoList(userId: string): Observable<Todo[]> {
+function watchTodoList(userId: string): Observable<Todo[]> {
   return collectionData(todoCollection(userId), 'id').pipe(map((data) => data.map(todoFromFirestoreDocument)))
 }
 
 function todoCollection(userId: string): firebase.firestore.CollectionReference {
   return db.collection(`users/${userId}/todos`)
+}
+
+export const dailyTodoRepo = {
+  watchDailyTodoList,
+  createDailyTodoIfNeeded,
+}
+
+export const todoRepo = {
+  watchTodoList,
 }

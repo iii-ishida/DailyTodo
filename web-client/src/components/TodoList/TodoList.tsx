@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import TodoListItem from './TodoListItem'
-import { Todo } from 'src/daily-todo'
+import { Todo, todoRepo } from 'src/daily-todo'
 import { TodoActions } from 'src/redux'
-import { watchTodoList } from 'src/repo'
 
 const TodoListContainer: React.FC = () => {
   const dispatch = useDispatch()
@@ -15,7 +14,7 @@ const TodoListContainer: React.FC = () => {
       return
     }
 
-    const subscription = watchTodoList(userId).subscribe((list) => dispatch(TodoActions.recieve(list)))
+    const subscription = todoRepo.watchTodoList(userId).subscribe((list) => dispatch(TodoActions.recieve(list)))
 
     return () => subscription.unsubscribe()
   }, [dispatch, userId])
