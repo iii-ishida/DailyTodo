@@ -3,17 +3,16 @@ import { TodoTemplate, todoTemplateRepo  } from 'src/daily-todo'
 
 interface Props {
   userId: string
-  todoTemplate: TodoTemplate
 }
 
-const TodoTemplateListItem: React.FC<Props> = ({ userId, todoTemplate }: Props) => {
-  const [formValue, setFormValue] = useState({ title: todoTemplate.title })
+const AddTodoTemplate: React.FC<Props> = ({ userId }: Props) => {
+  const [formValue, setFormValue] = useState({ title: '' })
 
   const handleChange = (e) => {
     setFormValue({ ...formValue, ...{ [e.target.name]: e.target.value } })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     const { title } = formValue
@@ -21,7 +20,8 @@ const TodoTemplateListItem: React.FC<Props> = ({ userId, todoTemplate }: Props) 
       return
     }
 
-    todoTemplateRepo.updateTodoTemplate(userId, { ...todoTemplate, ...{ title }})
+    const order = await todoTemplateRepo.nextOrder(userId);
+    todoTemplateRepo.addTodoTemplate(userId, { title, order } as TodoTemplate)
   }
 
   return (
@@ -31,4 +31,5 @@ const TodoTemplateListItem: React.FC<Props> = ({ userId, todoTemplate }: Props) 
   )
 }
 
-export default TodoTemplateListItem
+export default AddTodoTemplate
+
