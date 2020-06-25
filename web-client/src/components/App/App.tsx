@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import DailyTodoList from 'src/components/DailyTodoList'
+import TodoList from 'src/components/TodoList'
 import TodoTemplateList from 'src/components/TodoTemplateList'
 import Loading from 'src/components/Loading'
 import Login from 'src/components/Login'
@@ -32,7 +32,7 @@ const App: React.FC = () => {
 
       <Switch>
         <PrivateRoute exact path="/">
-          <DailyTodoList />
+          <TodoList />
           <button onClick={() => signOut()}>ログアウト</button>
         </PrivateRoute>
         <PrivateRoute path="/edit">
