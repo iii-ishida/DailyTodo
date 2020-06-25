@@ -3,15 +3,16 @@ import 'firebase/firestore'
 import { collectionData } from 'rxfire/firestore'
 import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs'
-import { Todo, TodoTemplate, todoFromTodoTemplate, todoFromFirestoreDocument, todoTemplateFromFirestoreDocument } from './models'
+import { Todo, todoFromTodoTemplate, todoFromFirestoreDocument } from 'src/daily-todo/models'
+import { todoTemplateCollection } from './todo-template'
 
 const db = firebase.firestore()
 
-function watchTodoList(userId: string, date: Date): Observable<Todo[]> {
+export function watchTodoList(userId: string, date: Date): Observable<Todo[]> {
   return collectionData(todoCollection(userId, date), 'id').pipe(map((data) => data.map(todoFromFirestoreDocument)))
 }
 
-async function createTodoIfNeeded(userId: string, date: Date): Promise<boolean> {
+export async function createTodoIfNeeded(userId: string, date: Date): Promise<boolean> {
   if (await existsTodo(userId, date)) {
     return false
   }
@@ -53,19 +54,3 @@ function toYYYYMMDD(date: Date): string {
   return `${year}${zeroPad(month)}${zeroPad(day)}`
 }
 
-function watchTodoTemplateList(userId: string): Observable<TodoTemplate[]> {
-  return collectionData(todoTemplateCollection(userId), 'id').pipe(map((data) => data.map(todoTemplateFromFirestoreDocument)))
-}
-
-function todoTemplateCollection(userId: string): firebase.firestore.CollectionReference {
-  return db.collection(`users/${userId}/templates`)
-}
-
-export const todoRepo = {
-  watchTodoList,
-  createTodoIfNeeded,
-}
-
-export const todoTemplateRepo = {
-  watchTodoTemplateList,
-}
