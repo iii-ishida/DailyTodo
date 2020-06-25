@@ -8,15 +8,15 @@ export interface Todo {
   doneAt: string | null
 }
 
-export function todoFromTodo(todo: any, date: Date): Todo {
+export function todoFromTodoTemplate(template: any, date: Date): Todo {
   const yyyymmdd = toYYYYMMDD(date)
 
   return {
-    id: `${yyyymmdd}-${todo.id}`,
-    originalId: todo.id,
+    id: `${yyyymmdd}-${template.id}`,
+    originalId: template.id,
     date: date.toISOString(),
-    title: todo.title,
-    order: todo.order,
+    title: template.title,
+    order: template.order,
     done: false,
     doneAt: null,
   }

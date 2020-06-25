@@ -3,7 +3,7 @@ import 'firebase/firestore'
 import { collectionData } from 'rxfire/firestore'
 import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs'
-import { Todo, TodoTemplate, todoFromTodo, todoFromFirestoreDocument, todoTemplateFromFirestoreDocument } from './models'
+import { Todo, TodoTemplate, todoFromTodoTemplate, todoFromFirestoreDocument, todoTemplateFromFirestoreDocument } from './models'
 
 const db = firebase.firestore()
 
@@ -27,7 +27,7 @@ async function existsTodo(userId: string, date: Date): Promise<boolean> {
 
 async function copyTodo(userId: string, date: Date): Promise<void> {
   const querySnapshot = await todoTemplateCollection(userId).get()
-  const todos = querySnapshot.docs.map((doc) => todoFromTodo({ id: doc.id, ...doc.data() }, date))
+  const todos = querySnapshot.docs.map((doc) => todoFromTodoTemplate({ id: doc.id, ...doc.data() }, date))
 
   const batch = db.batch()
   const collection = todoCollection(userId, date)
