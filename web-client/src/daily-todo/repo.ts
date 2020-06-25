@@ -3,7 +3,7 @@ import 'firebase/firestore'
 import { collectionData } from 'rxfire/firestore'
 import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs'
-import { DailyTodo, Todo, dailyTodoFromTodo, dailyTodoFromFirestoreDocument, todoFromFirestoreDocument } from 'src/daily-todo'
+import { DailyTodo, TodoTemplate, dailyTodoFromTodo, dailyTodoFromFirestoreDocument, todoTemplateFromFirestoreDocument } from './models'
 
 const db = firebase.firestore()
 
@@ -26,7 +26,7 @@ async function existsDailyTodo(userId: string, date: Date): Promise<boolean> {
 }
 
 async function copyDailyTodo(userId: string, date: Date): Promise<void> {
-  const querySnapshot = await todoCollection(userId).get()
+  const querySnapshot = await todoTemplateCollection(userId).get()
   const dailyTodos = querySnapshot.docs.map((doc) => dailyTodoFromTodo({ id: doc.id, ...doc.data() }, date))
 
   const batch = db.batch()
@@ -53,12 +53,12 @@ function toYYYYMMDD(date: Date): string {
   return `${year}${zeroPad(month)}${zeroPad(day)}`
 }
 
-function watchTodoList(userId: string): Observable<Todo[]> {
-  return collectionData(todoCollection(userId), 'id').pipe(map((data) => data.map(todoFromFirestoreDocument)))
+function watchTodoTemplateList(userId: string): Observable<TodoTemplate[]> {
+  return collectionData(todoTemplateCollection(userId), 'id').pipe(map((data) => data.map(todoTemplateFromFirestoreDocument)))
 }
 
-function todoCollection(userId: string): firebase.firestore.CollectionReference {
-  return db.collection(`users/${userId}/todos`)
+function todoTemplateCollection(userId: string): firebase.firestore.CollectionReference {
+  return db.collection(`users/${userId}/templates`)
 }
 
 export const dailyTodoRepo = {
@@ -66,6 +66,6 @@ export const dailyTodoRepo = {
   createDailyTodoIfNeeded,
 }
 
-export const todoRepo = {
-  watchTodoList,
+export const todoTemplateRepo = {
+  watchTodoTemplateList,
 }

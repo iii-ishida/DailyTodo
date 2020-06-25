@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import DailyTodoList from 'src/components/DailyTodoList'
-import TodoList from 'src/components/TodoList'
+import TodoTemplateList from 'src/components/TodoTemplateList'
 import Loading from 'src/components/Loading'
 import Login from 'src/components/Login'
 import PrivateRoute from 'src/components/PrivateRoute'
@@ -36,7 +36,7 @@ const App: React.FC = () => {
           <button onClick={() => signOut()}>ログアウト</button>
         </PrivateRoute>
         <PrivateRoute path="/edit">
-          <TodoList />
+          <TodoTemplateList />
         </PrivateRoute>
         <Route path="/login">
           <Login />

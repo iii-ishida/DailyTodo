@@ -1,5 +1,5 @@
 import { createSlice, configureStore, PayloadAction } from '@reduxjs/toolkit'
-import { DailyTodo, Todo } from 'src/daily-todo'
+import { DailyTodo, TodoTemplate } from 'src/daily-todo'
 
 const userSlice = createSlice({
   name: 'user',
@@ -18,23 +18,23 @@ const dailyTodoListSlice = createSlice({
   },
 })
 
-const todoListSlice = createSlice({
-  name: 'todoList',
+const todoTemplateListSlice = createSlice({
+  name: 'todoTemplateList',
   initialState: [],
   reducers: {
-    recieve: (_, action: PayloadAction<Todo[]>) => action.payload,
+    recieve: (_, action: PayloadAction<TodoTemplate[]>) => action.payload,
   },
 })
 
 const reducer = {
   dailyTodoList: dailyTodoListSlice.reducer,
-  todoList: todoListSlice.reducer,
+  todoTemplateList: todoTemplateListSlice.reducer,
   user: userSlice.reducer,
 }
 
 export const UserActions = { ...userSlice.actions }
 export const DailyTodoActions = { ...dailyTodoListSlice.actions }
-export const TodoActions = { ...todoListSlice.actions }
+export const TodoTemplateActions = { ...todoTemplateListSlice.actions }
 
 export const store = configureStore({
   reducer,
