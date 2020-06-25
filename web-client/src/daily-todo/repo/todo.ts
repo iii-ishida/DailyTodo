@@ -9,7 +9,7 @@ import { todoTemplateCollection } from './todo-template'
 const db = firebase.firestore()
 
 export function watchTodoList(userId: string, date: Date): Observable<Todo[]> {
-  return collectionData(todoCollection(userId, date), 'id').pipe(map((data) => data.map(todoFromFirestoreDocument)))
+  return collectionData(todoCollection(userId, date).orderBy('order'), 'id').pipe(map((data) => data.map(todoFromFirestoreDocument)))
 }
 
 export async function createTodoIfNeeded(userId: string, date: Date): Promise<boolean> {
