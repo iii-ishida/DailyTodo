@@ -7,13 +7,13 @@ import TodoTemplateList from 'src/components/TodoTemplateList'
 import Loading from 'src/components/Loading'
 import Login from 'src/components/Login'
 import PrivateRoute from 'src/components/PrivateRoute'
+import Header from 'src/components/Header'
 import Sidebar from 'src/components/Sidebar'
 
 import './App.css'
-import { useSignOut, useWatchAuthState } from './hooks'
+import { useWatchAuthState } from './hooks'
 
 const App: React.FC = () => {
-  const signOut = useSignOut()
   const isLoadedAuthState = useWatchAuthState()
   const isSignedIn = useSelector((state) => !!state.user)
 
@@ -23,6 +23,8 @@ const App: React.FC = () => {
 
   return (
     <Router>
+      <Header />
+
       {isSignedIn && (
         <Sidebar>
           <Link to="/">Todo</Link>
@@ -33,7 +35,6 @@ const App: React.FC = () => {
       <Switch>
         <PrivateRoute exact path="/">
           <TodoList />
-          <button onClick={() => signOut()}>ログアウト</button>
         </PrivateRoute>
         <PrivateRoute path="/edit">
           <TodoTemplateList />

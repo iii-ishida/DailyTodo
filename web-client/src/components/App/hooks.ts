@@ -1,15 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { UserActions } from 'src/redux'
-import { onAuthStateChanged, signOut } from 'src/auth'
-
-export function useSignOut(): () => Promise<any> {
-  const dispatch = useDispatch()
-
-  return async () => {
-    return signOut().then(() => dispatch(UserActions.signOut()))
-  }
-}
+import { onAuthStateChanged } from 'src/auth'
 
 export function useWatchAuthState(): boolean {
   const [isLoaded, setLoaded] = useState(false)
