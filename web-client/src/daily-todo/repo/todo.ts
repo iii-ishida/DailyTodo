@@ -53,4 +53,3 @@ function toYYYYMMDD(date: Date): string {
 
   return `${year}${zeroPad(month)}${zeroPad(day)}`
 }
-

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { TodoTemplate, todoTemplateRepo  } from 'src/daily-todo'
+import { TodoTemplate, todoTemplateRepo } from 'src/daily-todo'
 
 interface Props {
   userId: string
@@ -20,7 +20,7 @@ const AddTodoTemplate: React.FC<Props> = ({ userId }: Props) => {
       return
     }
 
-    const order = await todoTemplateRepo.nextOrder(userId);
+    const order = await todoTemplateRepo.nextOrder(userId)
     todoTemplateRepo.addTodoTemplate(userId, { title, order } as TodoTemplate)
   }
 
@@ -32,4 +32,3 @@ const AddTodoTemplate: React.FC<Props> = ({ userId }: Props) => {
 }
 
 export default AddTodoTemplate
-

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { TodoTemplate, todoTemplateRepo  } from 'src/daily-todo'
+import { TodoTemplate, todoTemplateRepo } from 'src/daily-todo'
 
 interface Props {
   userId: string
@@ -21,7 +21,7 @@ const TodoTemplateListItem: React.FC<Props> = ({ userId, todoTemplate }: Props) 
       return
     }
 
-    todoTemplateRepo.updateTodoTemplate(userId, { ...todoTemplate, ...{ title }})
+    todoTemplateRepo.updateTodoTemplate(userId, { ...todoTemplate, ...{ title } })
   }
 
   return (
