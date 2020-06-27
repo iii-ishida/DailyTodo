@@ -23,7 +23,6 @@ export function addTodoTemplate(userId: string, todoTemplate: TodoTemplate): Pro
   return todoTemplateCollection(userId).add({
     title,
     order,
-    done: false,
     updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
   })
 }
@@ -40,4 +39,3 @@ export function updateTodoTemplate(userId: string, todoTemplate: TodoTemplate): 
 export function todoTemplateCollection(userId: string): firebase.firestore.CollectionReference {
   return db.collection(`users/${userId}/templates`)
 }
-
