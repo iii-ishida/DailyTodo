@@ -4,7 +4,7 @@ interface Props {
   children: JSX.Element | JSX.Element[]
 }
 
-const Sidebar: React.FC<Props> = ({ children }: Props) => (
+const Navigation: React.FC<Props> = ({ children }: Props) => (
   <nav>
     <ol>
       {[children].flat().map((child, i) => (
@@ -14,4 +14,4 @@ const Sidebar: React.FC<Props> = ({ children }: Props) => (
   </nav>
 )
 
-export default Sidebar
+export default Navigation

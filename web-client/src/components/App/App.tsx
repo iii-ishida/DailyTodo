@@ -8,7 +8,7 @@ import Loading from 'src/components/Loading'
 import Login from 'src/components/Login'
 import PrivateRoute from 'src/components/PrivateRoute'
 import Header from 'src/components/Header'
-import Sidebar from 'src/components/Sidebar'
+import Navigation from 'src/components/Navigation'
 
 import './App.css'
 import { useWatchAuthState } from './hooks'
@@ -26,10 +26,10 @@ const App: React.FC = () => {
       <Header />
 
       {isSignedIn && (
-        <Sidebar>
+        <Navigation>
           <Link to="/">Todo</Link>
           <Link to="/edit">Edit</Link>
-        </Sidebar>
+        </Navigation>
       )}
 
       <Switch>
