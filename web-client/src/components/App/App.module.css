@@ -1,0 +1,11 @@
+.container {
+  display: grid;
+  grid-template-columns: max-content auto;
+  grid-template-rows: max-content auto;
+  height: 100vh;
+}
+
+.header {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}

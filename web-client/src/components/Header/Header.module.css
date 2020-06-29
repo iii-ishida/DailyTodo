@@ -1,0 +1,20 @@
+.header {
+  display: flex;
+  height: calc(4 * var(--spacing-unit));
+  background-color: var(--primary-color);
+  padding: var(--spacing-unit);
+}
+
+.logo {
+  height: 100%;
+}
+
+.signOutButton {
+  margin-left: auto;
+  margin-top: auto;
+  height: 100%;
+
+  font-size: var(--font-size-normal);
+  border-color: var(--accent-color);
+  cursor: pointer;
+}

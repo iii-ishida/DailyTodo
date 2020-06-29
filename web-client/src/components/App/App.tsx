@@ -10,7 +10,7 @@ import PrivateRoute from 'src/components/PrivateRoute'
 import Header from 'src/components/Header'
 import Navigation from 'src/components/Navigation'
 
-import './App.css'
+import styles from './App.module.css'
 import { useWatchAuthState } from './hooks'
 
 const App: React.FC = () => {
@@ -22,28 +22,32 @@ const App: React.FC = () => {
   }
 
   return (
-    <Router>
-      <Header />
+    <div className={styles.container}>
+      <Router>
+        <Header className={styles.header} />
 
-      {isSignedIn && (
-        <Navigation>
-          <Link to="/">Todo</Link>
-          <Link to="/edit">Edit</Link>
-        </Navigation>
-      )}
+        {isSignedIn && (
+          <Navigation>
+            <Link to="/">Todo</Link>
+            <Link to="/edit">Edit</Link>
+          </Navigation>
+        )}
 
-      <Switch>
-        <PrivateRoute exact path="/">
-          <TodoList />
-        </PrivateRoute>
-        <PrivateRoute path="/edit">
-          <TodoTemplateList />
-        </PrivateRoute>
-        <Route path="/login">
-          <Login />
-        </Route>
-      </Switch>
-    </Router>
+        <div className="App-main">
+          <Switch>
+            <PrivateRoute exact path="/">
+              <TodoList />
+            </PrivateRoute>
+            <PrivateRoute path="/edit">
+              <TodoTemplateList />
+            </PrivateRoute>
+            <Route path="/login">
+              <Login />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </div>
   )
 }
 
