@@ -1,18 +1,37 @@
 import React from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import styles from './Navigation.module.css'
 
-type Props = {
-  className?: string
-  children: JSX.Element | JSX.Element[]
+type Route = {
+  path: string
+  label: string
 }
 
-const Navigation: React.FC<Props> = ({ className, children }: Props) => (
-  <nav className={className}>
-    <ol>
-      {[children].flat().map((child, i) => (
-        <li key={i}>{child}</li>
-      ))}
-    </ol>
-  </nav>
-)
+type Props = {
+  routes: Route[]
+}
+
+const Navigation: React.FC<Props> = ({ routes }: Props) => {
+  const location = useLocation()
+
+  return (
+    <nav>
+      <ol>
+        {routes.map(({ path, label }) => {
+          let className = styles.navigationItem
+          if (path === location.pathname) {
+            className += ' ' + styles.selected
+          }
+
+          return (
+            <li key={path + label} className={className}>
+              <Link to={path}>{label}</Link>
+            </li>
+          )
+        })}
+      </ol>
+    </nav>
+  )
+}
 
 export default Navigation

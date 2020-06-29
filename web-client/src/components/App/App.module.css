@@ -8,4 +8,9 @@
 .header {
   grid-column-start: 1;
   grid-column-end: 3;
+  margin-bottom: calc(2 * var(--spacing-unit));
+}
+
+.main {
+  margin-left: calc(2 * var(--spacing-unit));
 }

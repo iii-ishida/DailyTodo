@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import TodoList from 'src/components/TodoList'
@@ -27,13 +27,15 @@ const App: React.FC = () => {
         <Header className={styles.header} />
 
         {isSignedIn && (
-          <Navigation>
-            <Link to="/">Todo</Link>
-            <Link to="/edit">Edit</Link>
-          </Navigation>
+          <Navigation
+            routes={[
+              { path: '/', label: 'Todo' },
+              { path: '/edit', label: 'Edit' },
+            ]}
+          />
         )}
 
-        <div className="App-main">
+        <div className={styles.main}>
           <Switch>
             <PrivateRoute exact path="/">
               <TodoList />

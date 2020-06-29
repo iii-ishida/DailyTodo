@@ -9,6 +9,12 @@ body {
 
 ul, ol {
   list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  margin: 0;
 }
 
 code {
@@ -17,8 +23,10 @@ code {
 }
 
 :root {
-  --primary-color: #5D2B75;
-  --accent-color: #AD51DB;
+  --primary-color-rgb: 93, 43, 117;
+  --primary-color: rgb(var(--primary-color-rgb));
+  --accent-color-rgb: 173, 81, 219;
+  --accent-color: rgb(var(--accent-color-rgb));
   --spacing-unit: 8px;
   --font-size-normal: 12px;
 }

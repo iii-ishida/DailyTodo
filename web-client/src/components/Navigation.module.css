@@ -1,0 +1,9 @@
+.navigationItem {
+  padding-left: calc(2 * var(--spacing-unit));
+  padding-right: calc(8 * var(--spacing-unit));
+  margin-bottom: var(--spacing-unit);
+}
+
+.selected {
+  background-color: rgba(var(--accent-color-rgb), 0.5);
+}
