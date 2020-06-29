@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { TodoTemplate, todoTemplateRepo } from 'src/daily-todo'
 
-interface Props {
+type Props = {
   userId: string
 }
 

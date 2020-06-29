@@ -23,7 +23,7 @@ const TodoTemplateListContainer: React.FC = () => {
   return <TodoTemplateList userId={userId} todoTemplateList={todoTemplateList} />
 }
 
-interface Props {
+type Props = {
   userId: string
   todoTemplateList: TodoTemplate[]
 }

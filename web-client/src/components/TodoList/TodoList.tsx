@@ -30,7 +30,7 @@ const TodoListContainer: React.FC = () => {
   return <TodoList todoList={todoList} />
 }
 
-interface Props {
+type Props = {
   todoList: Todo[]
 }
 

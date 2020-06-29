@@ -1,7 +1,7 @@
 import React from 'react'
 import { Todo } from 'src/daily-todo'
 
-interface Props {
+type Props = {
   todo: Todo
 }
 
