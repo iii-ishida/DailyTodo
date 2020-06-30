@@ -1,7 +1,7 @@
 .header {
   display: flex;
   height: calc(4 * var(--spacing-unit));
-  background-color: var(--primary-color);
+  background-color: var(--primary-color-darken);
   padding: var(--spacing-unit);
 }
 
@@ -14,7 +14,10 @@
   margin-top: auto;
   height: 100%;
 
-  font-size: var(--font-size-normal);
-  border-color: var(--accent-color);
+  font-size: var(--font-size-small);
+  background-color: var(--primary-color-darken);
+  color: var(--secondary-color);
+  font-weight: bold;
+  border: none;
   cursor: pointer;
 }

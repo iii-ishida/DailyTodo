@@ -23,10 +23,13 @@ code {
 }
 
 :root {
-  --primary-color-rgb: 93, 43, 117;
+  --primary-color-rgb: 175, 82, 222;
   --primary-color: rgb(var(--primary-color-rgb));
-  --accent-color-rgb: 173, 81, 219;
-  --accent-color: rgb(var(--accent-color-rgb));
+  --primary-color-darken-rgb: 124, 30, 171;
+  --primary-color-darken: rgb(var(--primary-color-darken-rgb));
+  --secondary-color-rgb: 129, 222, 82;
+  --secondary-color: rgb(var(--secondary-color-rgb));
   --spacing-unit: 8px;
-  --font-size-normal: 12px;
+  --font-size-small: 12px;
+  --font-size-normal: 16px;
 }

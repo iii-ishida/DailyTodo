@@ -24,8 +24,10 @@ const Navigation: React.FC<Props> = ({ routes }: Props) => {
           }
 
           return (
-            <li key={path + label} className={className}>
-              <Link to={path}>{label}</Link>
+            <li key={path + label}>
+              <Link to={path} className={className}>
+                {label}
+              </Link>
             </li>
           )
         })}

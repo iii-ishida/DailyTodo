@@ -1,9 +1,21 @@
 .navigationItem {
-  padding-left: calc(2 * var(--spacing-unit));
-  padding-right: calc(8 * var(--spacing-unit));
+  display: inline-block;
+  padding: calc(0.5 * var(--spacing-unit))
+           0
+           calc(0.5 * var(--spacing-unit))
+           calc(2 * var(--spacing-unit));
   margin-bottom: var(--spacing-unit);
+  width: calc(20 * var(--spacing-unit));
+  text-decoration: none;
+  font-size: var(--font-size-normal);
+}
+
+.navigationItem:hover:not(.selected) {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 0 calc(2 * var(--spacing-unit)) calc(2 * var(--spacing-unit)) 0
 }
 
 .selected {
-  background-color: rgba(var(--accent-color-rgb), 0.5);
+  background-color: rgba(var(--secondary-color-rgb), 0.5);
+  border-radius: 0 calc(2 * var(--spacing-unit)) calc(2 * var(--spacing-unit)) 0
 }
