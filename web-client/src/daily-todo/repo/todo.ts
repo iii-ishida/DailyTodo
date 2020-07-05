@@ -21,6 +21,20 @@ export async function createTodoIfNeeded(userId: string, date: Date): Promise<bo
   return true
 }
 
+export async function doneTodo(userId: string, todo: Todo): Promise<any> {
+  return todoCollection(userId, new Date(todo.date)).doc(todo.id).update({
+    done: true,
+    doneAt: firebase.firestore.FieldValue.serverTimestamp(),
+  })
+}
+
+export async function undoneTodo(userId: string, todo: Todo): Promise<any> {
+  return todoCollection(userId, new Date(todo.date)).doc(todo.id).update({
+    done: false,
+    doneAt: null,
+  })
+}
+
 async function existsTodo(userId: string, date: Date): Promise<boolean> {
   const querySnapshot = await todoCollection(userId, date).limit(1).get()
   return querySnapshot.size > 0
@@ -37,6 +51,7 @@ async function copyTodo(userId: string, date: Date): Promise<void> {
     const dateAsTimestamp = firebase.firestore.Timestamp.fromDate(new Date(todo.date))
     batch.set(ref, { ...todo, date: dateAsTimestamp })
   })
+
   return batch.commit()
 }
 

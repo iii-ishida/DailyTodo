@@ -30,7 +30,7 @@ export function addTodoTemplate(userId: string, todoTemplate: TodoTemplate): Pro
 export function updateTodoTemplate(userId: string, todoTemplate: TodoTemplate): Promise<any> {
   const { title } = todoTemplate
 
-  return todoTemplateCollection(userId).add({
+  return todoTemplateCollection(userId).doc(todoTemplate.id).update({
     title,
     updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
   })
