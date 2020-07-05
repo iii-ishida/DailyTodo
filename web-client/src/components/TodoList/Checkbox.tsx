@@ -18,9 +18,8 @@ const Checkbox: React.FC<Props> = ({ id, checked: initial, onChange }: Props) =>
   return (
     <label>
       <input type="checkbox" id={id} className={styles.checkboxRaw} onChange={handleChange} checked={checked} />
-      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" className={styles.checkbox}>
-        <path d="M0 0h24v24H0z" fill="none" />
-        <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
+      <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" className={styles.checkbox}>
+        <polygon fill-rule="nonzero" points="6.47727273 13.2136364 2.18181818 8.91818182 0.75 10.35 6.47727273 16.0772727 18.75 3.80454545 17.3181818 2.37272727"></polygon>
       </svg>
     </label>
   )
