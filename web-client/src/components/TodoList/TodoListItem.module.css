@@ -1,0 +1,11 @@
+.todoListItem  {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.label {
+  margin-top: -4px;
+  margin-left: var(--spacing-unit);
+  font-size: var(--font-size-normal);
+}

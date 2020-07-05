@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import TodoListItem from './TodoListItem'
 import { TodoActions } from 'src/redux'
 import { Todo, todoRepo } from 'src/daily-todo'
+import styles from './TodoList.module.css'
 
 const TodoListContainer: React.FC = () => {
   const dispatch = useDispatch()
@@ -27,18 +28,19 @@ const TodoListContainer: React.FC = () => {
     return () => subscription.unsubscribe()
   }, [dispatch, userId])
 
-  return <TodoList todoList={todoList} />
+  return <TodoList userId={userId} todoList={todoList} />
 }
 
 type Props = {
+  userId: string
   todoList: Todo[]
 }
 
-const TodoList: React.FC<Props> = ({ todoList }: Props) => (
+const TodoList: React.FC<Props> = ({ userId, todoList }: Props) => (
   <ul>
     {todoList.map((todo) => (
-      <li key={todo.id}>
-        <TodoListItem todo={todo} />
+      <li key={todo.id} className={styles.todoListItemContainer}>
+        <TodoListItem userId={userId} todo={todo} />
       </li>
     ))}
   </ul>
