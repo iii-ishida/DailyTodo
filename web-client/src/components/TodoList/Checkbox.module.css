@@ -1,0 +1,24 @@
+.container {
+  height: var(--font-size-normal);
+}
+.checkboxRaw {
+  display: none;
+}
+
+.checkbox {
+  fill: lightgrey;
+}
+
+.checkboxRaw:checked + .checkbox {
+  fill: var(--secondary-color);
+}
+
+.checkboxRaw:hover + .checkbox {
+  fill: grey;
+}
+
+.checkboxRaw:hover:checked + .checkbox {
+  fill: rgba(var(--secondary-color-rgb), 0.5);
+}
+
+
