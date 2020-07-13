@@ -18,12 +18,10 @@ const TodoListItem: React.FC<Props> = ({ userId, todo }: Props) => {
   }
 
   return (
-    <div className={styles.todoListItem}>
-      <Checkbox id={todo.id} checked={todo.done} onChange={handleChange} />
-      <label htmlFor={todo.id} className={styles.label}>
-        {todo.title}
-      </label>
-    </div>
+    <label className={styles.todoListItem}>
+      <Checkbox checked={todo.done} onChange={handleChange} />
+      <span className={styles.label}>{todo.title}</span>
+    </label>
   )
 }
 
