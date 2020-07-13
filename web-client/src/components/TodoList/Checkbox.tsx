@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styles from './Checkbox.module.css'
 
 type Props = {
-  id: string
+  id?: string
   checked: boolean | null
   onChange: (checked: boolean) => void
 }
@@ -15,11 +15,16 @@ const Checkbox: React.FC<Props> = ({ id, checked: initial, onChange }: Props) =>
     setChecked(e.target.checked)
   }
 
+  let containerClass = styles.container
+  if (checked) {
+    containerClass += ' ' + styles.checked
+  }
+
   return (
-    <label>
-      <input type="checkbox" id={id} className={styles.checkboxRaw} onChange={handleChange} checked={checked} />
-      <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" className={styles.checkbox}>
-        <polygon fill-rule="nonzero" points="6.47727273 13.2136364 2.18181818 8.91818182 0.75 10.35 6.47727273 16.0772727 18.75 3.80454545 17.3181818 2.37272727"></polygon>
+    <label className={containerClass}>
+      <input type="checkbox" id={id} className={styles.checkboxRaw} checked={checked} onChange={handleChange} />
+      <svg xmlns="http://www.w3.org/2000/svg" className={styles.checkbox} viewBox="0 0 24 24" width="18px" height="18px">
+        <path d="M9 16L5 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
       </svg>
     </label>
   )

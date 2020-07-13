@@ -1,24 +1,57 @@
-.container {
-  height: var(--font-size-normal);
-}
 .checkboxRaw {
   display: none;
 }
 
+.container {
+  position: relative;
+  border: solid 1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.container::after {
+  position: absolute;
+  top: calc(-1 * var(--spacing-unit));
+  left: calc(-1 * var(--spacing-unit));
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  padding: var(--spacing-unit);
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: scale(0);
+  transition: transform 0.1s;
+  content: '';
+
+}
+
+.container:hover::after {
+  transform: scale(1);
+}
+
+@keyframes scale_up {
+  from { transform: scale(0) }
+  to { transform: scale(1) }
+}
+
+.checked {
+  background-color: var(--primary-color-darken);
+}
+
+.checked.container:hover::after {
+  background-color: rgba(var(--primary-color-rgb), 0.5);
+  animation: scale_up 0.1s;
+}
+
 .checkbox {
   fill: lightgrey;
+  stroke: lightgrey;
+  display: block;
+  margin: auto;
 }
 
-.checkboxRaw:checked + .checkbox {
+.checked > .checkbox {
   fill: var(--secondary-color);
+  stroke: var(--secondary-color);
 }
-
-.checkboxRaw:hover + .checkbox {
-  fill: grey;
-}
-
-.checkboxRaw:hover:checked + .checkbox {
-  fill: rgba(var(--secondary-color-rgb), 0.5);
-}
-
-
