@@ -1,0 +1,4 @@
+.header {
+  font-size: var(--font-size-normal);
+  margin-bottom: calc(4 * var(--spacing-unit));
+}

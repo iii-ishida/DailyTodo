@@ -1,8 +1,3 @@
-.header {
-  font-size: var(--font-size-normal);
-  margin-bottom: calc(4 * var(--spacing-unit));
-}
-
 .todoList {
   margin-right: calc(2 * var(--spacing-unit));
 }

@@ -5,19 +5,22 @@ import { TodoActions } from 'src/redux'
 import { Todo, todoRepo } from 'src/daily-todo'
 import styles from './TodoList.module.css'
 
-const TodoListContainer: React.FC = () => {
+type ContainerProps = {
+  date: Date
+}
+
+const TodoListContainer: React.FC<ContainerProps> = ({ date }: ContainerProps) => {
   const dispatch = useDispatch()
   const userId = useSelector((state) => state.user?.id)
   const todoList = useSelector((state) => state.todoList)
-  const date = new Date()
 
   useEffect(() => {
     if (!userId) {
       return
     }
 
-    todoRepo.createTodoIfNeeded(userId, new Date())
-  }, [userId])
+    todoRepo.createTodoIfNeeded(userId, date)
+  }, [userId, date])
 
   useEffect(() => {
     if (!userId) {
@@ -27,7 +30,7 @@ const TodoListContainer: React.FC = () => {
     const subscription = todoRepo.watchTodoList(userId, date).subscribe((list) => dispatch(TodoActions.recieve(list)))
 
     return () => subscription.unsubscribe()
-  }, [dispatch, userId])
+  }, [dispatch, userId, date])
 
   return <TodoList userId={userId} date={date} todoList={todoList} />
 }
@@ -38,27 +41,14 @@ type Props = {
   todoList: Todo[]
 }
 
-const TodoList: React.FC<Props> = ({ userId, date, todoList }: Props) => (
-  <div>
-    <h1 className={styles.header}>{formatDate(date)}</h1>
-    <ul className={styles.todoList}>
-      {todoList.map((todo) => (
-        <li key={todo.id} className={styles.todoListItemContainer}>
-          <TodoListItem userId={userId} todo={todo} />
-        </li>
-      ))}
-    </ul>
-  </div>
+const TodoList: React.FC<Props> = ({ userId, todoList }: Props) => (
+  <ul className={styles.todoList}>
+    {todoList.map((todo) => (
+      <li key={todo.id} className={styles.todoListItemContainer}>
+        <TodoListItem userId={userId} todo={todo} />
+      </li>
+    ))}
+  </ul>
 )
-
-function formatDate(date: Date): string {
-  const zeroPad = (x) => (x >= 10 ? '' + x : '0' + x)
-
-  const yyyy = date.getFullYear()
-  const mm = zeroPad(date.getMonth() + 1)
-  const dd = zeroPad(date.getDate())
-
-  return `${yyyy}年${mm}月${dd}日`
-}
 
 export default TodoListContainer

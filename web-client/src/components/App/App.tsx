@@ -38,7 +38,7 @@ const App: React.FC = () => {
         <div className={styles.main}>
           <Switch>
             <PrivateRoute exact path="/">
-              <TodoList />
+              <TodoList date={new Date()} />
             </PrivateRoute>
             <PrivateRoute path="/edit">
               <TodoTemplateList />
