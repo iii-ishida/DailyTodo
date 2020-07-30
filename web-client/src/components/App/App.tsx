@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Switch, Redirect, Route, useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import TodoList from 'src/components/TodoList'
@@ -23,7 +23,6 @@ const App: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <Router>
         <Header className={styles.header} />
 
         {isSignedIn && (
@@ -48,7 +47,6 @@ const App: React.FC = () => {
             </Route>
           </Switch>
         </div>
-      </Router>
     </div>
   )
 }
