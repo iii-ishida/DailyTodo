@@ -1,0 +1,87 @@
+.calendar {
+  --cell-size: 40px;
+}
+
+.calendar {
+  overflow: scroll;
+  height: calc(calc(6 * var(--cell-size)) + calc(2 * var(--spacing-unit)));
+  width: fit-content;
+  padding: 0 calc(2 * var(--spacing-unit));
+}
+
+.calendar > li {
+  margin-top: var(--spacing-unit);
+}
+
+.monthTitle {
+  font-size: var(--font-size-large);
+}
+
+.month {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  width: calc(7 * var(--cell-size));
+  height: fit-content;
+}
+
+.sun {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  color: red;
+}
+.mon {
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+.tue {
+  grid-column-start: 3;
+  grid-column-end: 4;
+}
+.wed {
+  grid-column-start: 4;
+  grid-column-end: 5;
+}
+.thu {
+  grid-column-start: 5;
+  grid-column-end: 6;
+}
+.fri {
+  grid-column-start: 6;
+  grid-column-end: 7;
+}
+.sat {
+  grid-column-start: 7;
+  grid-column-end: 8;
+  color: blue;
+}
+
+.disabled {
+  color: grey;
+}
+
+.day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-normal);
+  cursor: pointer;
+  height: var(--cell-size);
+  width: var(--cell-size);
+}
+
+.day:hover {
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.day:active {
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.day.disabled {
+  cursor: default;
+}
+.day.disabled:hover {
+  background-color: white;
+}
