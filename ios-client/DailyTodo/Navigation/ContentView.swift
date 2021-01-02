@@ -9,7 +9,7 @@ import Combine
 import SwiftUI
 
 struct ContentView: View {
-  @State private var model = ViewModel()
+  @ObservedObject private var model = ViewModel()
 
   var body: some View {
     if model.isSignedIn {
@@ -17,7 +17,6 @@ struct ContentView: View {
     } else {
       AuthView()
     }
-
   }
 }
 
