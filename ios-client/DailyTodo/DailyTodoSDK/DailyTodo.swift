@@ -9,7 +9,7 @@
 import Firebase
 import Foundation
 
-public struct DailyTodo: Hashable {
+public struct DailyTodo: Identifiable, Codable {
   /// id.
   public let id: String
 
@@ -43,6 +43,16 @@ public struct DailyTodo: Hashable {
     self.doneAt = nil
   }
 
+  init(title: String) {
+    self.id = title
+    self.origintlId = title
+    self.date = Date()
+    self.title = title
+    self.order = 0
+    self.done = false
+    self.doneAt = nil
+  }
+
   public static func from(todos: [Todo], date: Date) -> [DailyTodo] {
     return todos.map { DailyTodo(todo: $0, date: date) }
   }
@@ -50,11 +60,6 @@ public struct DailyTodo: Hashable {
   public mutating func done(doneAt: Date) {
     self.done = true
     self.doneAt = doneAt
-  }
-
-  /// Hashes the essential components of this value by feeding them into the given hasher.
-  public func hash(into hasher: inout Hasher) {
-    hasher.combine(id)
   }
 
   private static var dateFormatter: DateFormatter = {
