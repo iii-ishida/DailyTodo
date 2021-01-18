@@ -31,7 +31,6 @@ private class ViewModel: ObservableObject {
   private var cancellableSet: Set<AnyCancellable> = []
 
   init() {
-    DailyTodoSDK.initialize()
     DailyTodoAuth.watchAuthState().assign(to: \.isSignedIn, on: self).store(in: &cancellableSet)
   }
 }

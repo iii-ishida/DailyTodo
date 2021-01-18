@@ -9,9 +9,9 @@ import SwiftUI
 
 @main
 struct DailyTodoApp: App {
-  //  init() {
-  //    DailyTodoSDK.initialize()
-  //  }
+  init() {
+    DailyTodoSDK.initialize()
+  }
 
   var body: some Scene {
     WindowGroup {
