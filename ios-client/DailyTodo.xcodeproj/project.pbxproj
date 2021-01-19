@@ -15,6 +15,7 @@
 		6220B98F25187ED900A0DBE9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6220B98E25187ED900A0DBE9 /* Preview Assets.xcassets */; };
 		6220B99A25187ED900A0DBE9 /* DailyTodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6220B99925187ED900A0DBE9 /* DailyTodoTests.swift */; };
 		6220B9A525187ED900A0DBE9 /* DailyTodoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6220B9A425187ED900A0DBE9 /* DailyTodoUITests.swift */; };
+		624F04A225B5844400CDCC4D /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624F04A125B5844400CDCC4D /* Setting.swift */; };
 		6267DE7A2519D9C4003EC67E /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6267DE752519D9C2003EC67E /* Todo.swift */; };
 		6267DE7B2519D9C4003EC67E /* DailyTodoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6267DE762519D9C3003EC67E /* DailyTodoAPI.swift */; };
 		6267DE7C2519D9C4003EC67E /* DailyTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6267DE772519D9C3003EC67E /* DailyTodo.swift */; };
@@ -57,6 +58,7 @@
 		6220B9A025187ED900A0DBE9 /* DailyTodoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DailyTodoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6220B9A425187ED900A0DBE9 /* DailyTodoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTodoUITests.swift; sourceTree = "<group>"; };
 		6220B9A625187ED900A0DBE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		624F04A125B5844400CDCC4D /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		6267DE752519D9C2003EC67E /* Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		6267DE762519D9C3003EC67E /* DailyTodoAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTodoAPI.swift; sourceTree = "<group>"; };
 		6267DE772519D9C3003EC67E /* DailyTodo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTodo.swift; sourceTree = "<group>"; };
@@ -96,6 +98,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6210743025A5DCC300BEC451 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				624F04A125B5844400CDCC4D /* Setting.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		6220B97B25187ED800A0DBE9 = {
 			isa = PBXGroup;
 			children = (
@@ -120,11 +130,12 @@
 		6220B98625187ED800A0DBE9 /* DailyTodo */ = {
 			isa = PBXGroup;
 			children = (
+				6220B98725187ED800A0DBE9 /* DailyTodoApp.swift */,
 				6267DE992519DE8B003EC67E /* Navigation */,
 				62F22140252AA4F700D6040D /* Auth */,
 				6267DEAF2519E111003EC67E /* DailyTodo */,
+				6210743025A5DCC300BEC451 /* Settings */,
 				6267DE712519D98F003EC67E /* DailyTodoSDK */,
-				6220B98725187ED800A0DBE9 /* DailyTodoApp.swift */,
 				6220B98B25187ED900A0DBE9 /* Assets.xcassets */,
 				6267DE942519DDFF003EC67E /* GoogleService-Info.plist */,
 				6220B99025187ED900A0DBE9 /* Info.plist */,
@@ -343,6 +354,7 @@
 			files = (
 				6267DE7C2519D9C4003EC67E /* DailyTodo.swift in Sources */,
 				6267DE9E2519DED1003EC67E /* AppTabNavigation.swift in Sources */,
+				624F04A225B5844400CDCC4D /* Setting.swift in Sources */,
 				6267DE7B2519D9C4003EC67E /* DailyTodoAPI.swift in Sources */,
 				6220B98A25187ED800A0DBE9 /* ContentView.swift in Sources */,
 				6267DE7A2519D9C4003EC67E /* Todo.swift in Sources */,

@@ -22,7 +22,7 @@ struct AppTabNavigation: View {
       .tag(Tab.todo)
 
       NavigationView {
-        Text("Settings")
+        Setting()
       }
       .tabItem {
         Label("Settings", systemImage: "list.bullet")
