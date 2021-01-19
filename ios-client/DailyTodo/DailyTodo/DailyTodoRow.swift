@@ -5,17 +5,47 @@
 //  Created by ishida on 2020/09/22.
 //
 
+import Combine
 import SwiftUI
 
 struct DailyTodoRow: View {
-  var dailyTodo: DailyTodo
-  @State private var isOn = false
+  private var model: ViewModel
+
+  init(dailyTodo: DailyTodo) {
+    model = ViewModel(dailyTodo: dailyTodo)
+  }
 
   var body: some View {
     HStack {
-      Toggle("", isOn: $isOn).labelsHidden()
-      Text(dailyTodo.title)
+      Toggle("", isOn: Binding(get: { model.isDone }, set: model.toggle)).labelsHidden()
+      Text(model.title)
       Spacer()
+    }
+  }
+}
+
+private class ViewModel: ObservableObject {
+  let isDone: Bool
+  let title: String
+
+  private let dailyTodo: DailyTodo
+  private var cancellableSet: Set<AnyCancellable> = []
+
+  init(dailyTodo: DailyTodo) {
+    self.dailyTodo = dailyTodo
+    self.isDone = dailyTodo.done
+    self.title = dailyTodo.title
+  }
+
+  func toggle(_ done: Bool) {
+    if done {
+      DailyTodoAPI.doneDailyTodo(dailyTodo: dailyTodo)
+        .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
+        .store(in: &cancellableSet)
+    } else {
+      DailyTodoAPI.undoneDailyTodo(dailyTodo: dailyTodo)
+        .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
+        .store(in: &cancellableSet)
     }
   }
 }

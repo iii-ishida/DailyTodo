@@ -13,7 +13,7 @@ struct AppTabNavigation: View {
   var body: some View {
     TabView(selection: $selection) {
       NavigationView {
-        Text("Not Signed In")
+        DailyTodoList()
       }
       .tabItem {
         Label("Menu", systemImage: "list.bullet")
