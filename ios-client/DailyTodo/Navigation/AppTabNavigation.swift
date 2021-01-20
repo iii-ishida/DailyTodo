@@ -16,8 +16,8 @@ struct AppTabNavigation: View {
         DailyTodoList()
       }
       .tabItem {
-        Label("Menu", systemImage: "list.bullet")
-          .accessibility(label: Text("Menu"))
+        Label("Todo", systemImage: "list.bullet")
+          .accessibility(label: Text("Todo"))
       }
       .tag(Tab.todo)
 
@@ -25,8 +25,8 @@ struct AppTabNavigation: View {
         Setting()
       }
       .tabItem {
-        Label("Settings", systemImage: "list.bullet")
-          .accessibility(label: Text("Settings"))
+        Label("設定", systemImage: "gear")
+          .accessibility(label: Text("設定"))
       }
       .tag(Tab.settings)
     }
