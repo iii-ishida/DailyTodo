@@ -14,7 +14,7 @@ struct AuthView: View {
   let labelWidth: CGFloat = 78.0
 
   var body: some View {
-    VStack(alignment: .trailing) {
+    VStack {
       HStack {
         Text("email")
           .frame(width: labelWidth, alignment: .trailing)
