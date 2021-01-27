@@ -11,24 +11,26 @@ struct Setting: View {
   @StateObject private var model = ViewModel()
 
   var body: some View {
-    VStack {
-      Spacer()
-      Button(action: model.logout) {
-        Text("ログアウト")
-          .frame(maxWidth: .infinity, minHeight: 44.0)
-          .foregroundColor(.white)
-      }
-      .background(Color.blue)
-      .cornerRadius(4.0)
+    NavigationView {
+      VStack {
+        Spacer()
+        Button(action: model.logout) {
+          Text("ログアウト")
+            .frame(maxWidth: .infinity, minHeight: 44.0)
+            .foregroundColor(.white)
+        }
+        .background(Color.blue)
+        .cornerRadius(4.0)
 
-      Spacer().frame(height: 36.0)
+        Spacer().frame(height: 36.0)
+      }
+      .padding()
+      .alert(
+        isPresented: $model.showAlert,
+        content: {
+          Alert(title: Text("Error"), message: Text(model.error))
+        })
     }
-    .padding()
-    .alert(
-      isPresented: $model.showAlert,
-      content: {
-        Alert(title: Text("Error"), message: Text(model.error))
-      })
   }
 }
 

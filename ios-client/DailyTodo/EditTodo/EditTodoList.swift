@@ -15,25 +15,26 @@ struct EditTodoList: View {
   @State private var dragging: Todo?
 
   var body: some View {
-    List {
-      ForEach(model.list) { todo in
-        EditTodoRow(todo: todo)
-      }
-      .onMove {
-        guard let from = $0.first else { return }
-        model.move(from: from, to: $1)
-      }
-      .onDelete {
-        guard let index = $0.first else { return }
-        model.deleteAt(index)
-      }
+    NavigationView {
+      List {
+        ForEach(model.list) { todo in
+          EditTodoRow(todo: todo)
+        }
+        .onMove {
+          guard let from = $0.first else { return }
+          model.move(from: from, to: $1)
+        }
+        .onDelete {
+          guard let index = $0.first else { return }
+          model.deleteAt(index)
+        }
 
-      EditTodoRow(todo: Todo(title: "", order: model.list.count))
-    }
-    .navigationTitle("Edit Todo")
-    .navigationBarTitleDisplayMode(.inline)
-    .navigationBarItems(trailing: EditButton())
-
+        EditTodoRow(todo: Todo(title: "", order: model.list.count))
+      }
+      .navigationTitle("Edit Todo")
+      .navigationBarTitleDisplayMode(.inline)
+      .navigationBarItems(trailing: EditButton())
+    }.navigationViewStyle(StackNavigationViewStyle())
   }
 }
 

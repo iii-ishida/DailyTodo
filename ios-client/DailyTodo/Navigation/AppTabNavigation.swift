@@ -12,32 +12,26 @@ struct AppTabNavigation: View {
 
   var body: some View {
     TabView(selection: $selection) {
-      NavigationView {
-        DailyTodoList()
-      }
-      .tabItem {
-        Label("Todo", systemImage: "list.bullet")
-          .accessibility(label: Text("Todo"))
-      }
-      .tag(Tab.todo)
+      DailyTodoList()
+        .tabItem {
+          Label("Todo", systemImage: "list.bullet")
+            .accessibility(label: Text("Todo"))
+        }
+        .tag(Tab.todo)
 
-      NavigationView {
-        EditTodoList()
-      }.navigationViewStyle(StackNavigationViewStyle())
+      EditTodoList()
         .tabItem {
           Label("編集", systemImage: "pencil")
             .accessibility(label: Text("編集"))
         }
         .tag(Tab.edit)
 
-      NavigationView {
-        Setting()
-      }
-      .tabItem {
-        Label("設定", systemImage: "gear")
-          .accessibility(label: Text("設定"))
-      }
-      .tag(Tab.settings)
+      Setting()
+        .tabItem {
+          Label("設定", systemImage: "gear")
+            .accessibility(label: Text("設定"))
+        }
+        .tag(Tab.settings)
     }
   }
 }

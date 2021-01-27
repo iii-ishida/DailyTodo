@@ -12,11 +12,14 @@ struct DailyTodoList: View {
   @StateObject private var model = ViewModel(date: Date())
 
   var body: some View {
-    List {
-      ForEach(model.list) { todo in
-        DailyTodoRow(dailyTodo: todo)
+    NavigationView {
+      List {
+        ForEach(model.list) { todo in
+          DailyTodoRow(dailyTodo: todo)
+        }
       }
-    }.navigationBarTitleDisplayMode(.inline)
+      .navigationBarTitleDisplayMode(.inline)
+    }
   }
 }
 
