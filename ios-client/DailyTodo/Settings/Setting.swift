@@ -29,7 +29,9 @@ struct Setting: View {
         isPresented: $model.showAlert,
         content: {
           Alert(title: Text("Error"), message: Text(model.error))
-        })
+        }
+      )
+      .navigationTitle("Settings")
     }
   }
 }

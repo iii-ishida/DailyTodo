@@ -18,6 +18,7 @@ struct DailyTodoList: View {
           DailyTodoRow(dailyTodo: todo)
         }
       }
+      .navigationTitle(Text(model.date, style: .date))
       .navigationBarTitleDisplayMode(.inline)
     }
   }
@@ -25,9 +26,13 @@ struct DailyTodoList: View {
 
 private class ViewModel: ObservableObject {
   @Published var list: [DailyTodo] = []
+  let date: Date
+
   private var cancellableSet: Set<AnyCancellable> = []
 
   init(date: Date) {
+    self.date = date
+
     DailyTodoAPI.createDailyTodoIfNeeded(date: date).flatMap { _ in
       DailyTodoAPI.watchDailyTodoList(date: date)
     }
