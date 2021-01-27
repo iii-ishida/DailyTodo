@@ -10,7 +10,7 @@ import Firebase
 import Foundation
 
 /// A Todo.
-public struct Todo: Hashable {
+public struct Todo: Identifiable, Codable, Equatable {
   /// id.
   public let id: String
 

@@ -22,6 +22,15 @@ struct AppTabNavigation: View {
       .tag(Tab.todo)
 
       NavigationView {
+        EditTodoList()
+      }.navigationViewStyle(StackNavigationViewStyle())
+        .tabItem {
+          Label("編集", systemImage: "pencil")
+            .accessibility(label: Text("編集"))
+        }
+        .tag(Tab.edit)
+
+      NavigationView {
         Setting()
       }
       .tabItem {
