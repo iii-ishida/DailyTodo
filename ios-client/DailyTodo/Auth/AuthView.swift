@@ -9,7 +9,7 @@ import Combine
 import SwiftUI
 
 struct AuthView: View {
-  @ObservedObject private var model = ViewModel()
+  @StateObject private var model = ViewModel()
 
   let labelWidth: CGFloat = 78.0
 

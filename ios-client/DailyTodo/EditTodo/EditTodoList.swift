@@ -10,7 +10,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct EditTodoList: View {
-  @ObservedObject private var model = ViewModel()
+  @StateObject private var model = ViewModel()
   @State private var isEditable = false
   @State private var dragging: Todo?
 

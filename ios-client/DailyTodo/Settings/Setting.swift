@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Setting: View {
-  @ObservedObject private var model = ViewModel()
+  @StateObject private var model = ViewModel()
 
   var body: some View {
     VStack {

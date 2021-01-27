@@ -9,7 +9,7 @@ import Combine
 import SwiftUI
 
 struct DailyTodoList: View {
-  @ObservedObject private var model = ViewModel(date: Date())
+  @StateObject private var model = ViewModel(date: Date())
 
   var body: some View {
     List {
