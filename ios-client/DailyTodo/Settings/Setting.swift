@@ -25,12 +25,9 @@ struct Setting: View {
         Spacer().frame(height: 36.0)
       }
       .padding()
-      .alert(
-        isPresented: $model.showAlert,
-        content: {
-          Alert(title: Text("Error"), message: Text(model.error))
-        }
-      )
+      .alert(isPresented: $model.showAlert) {
+        Alert(title: Text("Error"), message: Text(model.error))
+      }
       .navigationTitle("Settings")
     }
   }
