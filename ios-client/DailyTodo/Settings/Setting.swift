@@ -29,6 +29,7 @@ struct Setting: View {
         Alert(title: Text("Error"), message: Text(model.error))
       }
       .navigationTitle("Settings")
+      .navigationBarTitleDisplayMode(.inline)
     }
   }
 }
