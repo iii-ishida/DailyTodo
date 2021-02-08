@@ -22,14 +22,14 @@ public enum DailyTodoAPI {
     DailyTodoAuth.userId
   }
 
-  /// Watch modify events for Todos.
-  public static func watchTodoList() -> AnyPublisher<[Todo], Error> {
+  /// Watch modify events for TodoTemplates.
+  public static func watchTodoTemplateList() -> AnyPublisher<[TodoTemplate], Error> {
     guard let userId = userId else {
       return authErrorFuture()
     }
 
-    let sub = PassthroughSubject<[Todo], Error>()
-    let listener = todoCollection(withUserId: userId).order(by: "order").addSnapshotListener { querySnapshot, error in
+    let sub = PassthroughSubject<[TodoTemplate], Error>()
+    let listener = todoTemplateCollection(withUserId: userId).order(by: "order").addSnapshotListener { querySnapshot, error in
       if let error = error {
         sub.send(completion: .failure(error))
         return
@@ -37,7 +37,7 @@ public enum DailyTodoAPI {
 
       guard let documents = querySnapshot?.documents else { return }
 
-      sub.send(Todo.from(firestoreDocuments: documents))
+      sub.send(TodoTemplate.from(firestoreDocuments: documents))
     }
 
     return sub.handleEvents(
@@ -46,20 +46,20 @@ public enum DailyTodoAPI {
     ).eraseToAnyPublisher()
   }
 
-  /// Get next order for Todo list.
+  /// Get next order for TodoTemplates list.
   public static func nextOrder() -> AnyPublisher<Int, Error> {
     guard let userId = userId else {
       return authErrorFuture()
     }
 
     return Future<Int, Error> { promise in
-      todoCollection(withUserId: userId).order(by: "order", descending: true).limit(to: 1).getDocuments { querySnapshot, error in
+      todoTemplateCollection(withUserId: userId).order(by: "order", descending: true).limit(to: 1).getDocuments { querySnapshot, error in
         if let error = error {
           promise(.failure(error))
           return
         }
 
-        guard let documents = querySnapshot?.documents, let todo = Todo(firebaseDocument: documents[0]) else {
+        guard let documents = querySnapshot?.documents, let todo = TodoTemplate(firebaseDocument: documents[0]) else {
           promise(.failure(APIError.unknown))
           return
         }
@@ -69,20 +69,20 @@ public enum DailyTodoAPI {
     }.eraseToAnyPublisher()
   }
 
-  /// Add a Todo.
-  public static func addTodo(todo: Todo) -> AnyPublisher<Any, Error> {
+  /// Add a TodoTemplate.
+  public static func addTodoTemplate(template: TodoTemplate) -> AnyPublisher<Any, Error> {
     guard let userId = userId else {
       return authErrorFuture()
     }
 
     return Future<Any, Error> { promise in
       let data: [String: Any] = [
-        "title": todo.title,
-        "order": todo.order,
+        "title": template.title,
+        "order": template.order,
         "updatedAt": FieldValue.serverTimestamp(),
       ]
 
-      todoCollection(withUserId: userId).addDocument(data: data) {
+      todoTemplateCollection(withUserId: userId).addDocument(data: data) {
         if let error = $0 {
           promise(.failure(error))
         } else {
@@ -92,14 +92,14 @@ public enum DailyTodoAPI {
     }.eraseToAnyPublisher()
   }
 
-  /// Update the title of a Todo.
-  public static func updateTodo(withId id: String, title: String) -> AnyPublisher<Any, Error> {
+  /// Update the title of a TodoTemplate.
+  public static func updateTodoTemplate(withId id: String, title: String) -> AnyPublisher<Any, Error> {
     guard let userId = userId else {
       return authErrorFuture()
     }
 
     return Future<Any, Error> { promise in
-      todoCollection(withUserId: userId).document(id).setData(["title": title, "updatedAt": FieldValue.serverTimestamp()], merge: true) {
+      todoTemplateCollection(withUserId: userId).document(id).setData(["title": title, "updatedAt": FieldValue.serverTimestamp()], merge: true) {
         if let error = $0 {
           promise(.failure(error))
         } else {
@@ -109,21 +109,21 @@ public enum DailyTodoAPI {
     }.eraseToAnyPublisher()
   }
 
-  /// reorder todo list and update the store.
-  public static func updateReorderedTodoList(todoList: [Todo], from: Int, to: Int) -> AnyPublisher<Any, Error> {
+  /// reorder todoTemplateList list and update the store.
+  public static func updateReorderedTodoTemplateList(todoTemplateList: [TodoTemplate], from: Int, to: Int) -> AnyPublisher<Any, Error> {
     guard let userId = userId else {
       return authErrorFuture()
     }
 
-    let reordered = Todo.reorderTodoList(todoList, from: from, to: to)
+    let reordered = TodoTemplate.reorderTodoList(todoTemplateList, from: from, to: to)
 
     let batch = db.batch()
-    reordered.forEach { todo in
-      let oldTodo = todoList.first { old in old.id == todo.id }
-      guard let old = oldTodo, todo.order != old.order else { return }
+    reordered.forEach { template in
+      let oldTodo = todoTemplateList.first { old in old.id == template.id }
+      guard let old = oldTodo, template.order != old.order else { return }
 
-      let doc = todoCollection(withUserId: userId).document(todo.id)
-      batch.updateData(["order": todo.order], forDocument: doc)
+      let doc = todoTemplateCollection(withUserId: userId).document(template.id)
+      batch.updateData(["order": template.order], forDocument: doc)
     }
 
     return Future<Any, Error> { promise in
@@ -137,14 +137,14 @@ public enum DailyTodoAPI {
     }.eraseToAnyPublisher()
   }
 
-  /// Delete a todo.
-  public static func deleteTodo(_ todo: Todo) -> AnyPublisher<Any, Error> {
+  /// Delete a todoTemplate.
+  public static func deleteTodoTemplate(_ todoTemplate: TodoTemplate) -> AnyPublisher<Any, Error> {
     guard let userId = userId else {
       return authErrorFuture()
     }
 
     return Future<Any, Error> { promise in
-      todoCollection(withUserId: userId).document(todo.id).delete {
+      todoTemplateCollection(withUserId: userId).document(todoTemplate.id).delete {
         if let error = $0 {
           promise(.failure(error))
         } else {
@@ -154,7 +154,7 @@ public enum DailyTodoAPI {
     }.eraseToAnyPublisher()
   }
 
-  private static func todoCollection(withUserId userId: String) -> CollectionReference {
+  private static func todoTemplateCollection(withUserId userId: String) -> CollectionReference {
     db.collection("users/\(userId)/todos")
   }
 
@@ -236,8 +236,8 @@ extension DailyTodoAPI {
   }
 
   private static func copyDailyTodo(withUserId userId: String, date: Date) -> AnyPublisher<Any, Error> {
-    let getTodos = Future<[Todo], Error> { promise in
-      todoCollection(withUserId: userId).getDocuments { querySnapshot, error in
+    let getTemplates = Future<[TodoTemplate], Error> { promise in
+      todoTemplateCollection(withUserId: userId).getDocuments { querySnapshot, error in
         if let error = error {
           promise(.failure(error))
           return
@@ -247,12 +247,12 @@ extension DailyTodoAPI {
           promise(.failure(APIError.unknown))
           return
         }
-        promise(.success(Todo.from(firestoreDocuments: documents)))
+        promise(.success(TodoTemplate.from(firestoreDocuments: documents)))
       }
     }.eraseToAnyPublisher()
 
-    return getTodos.flatMap { todos -> AnyPublisher<Any, Error> in
-      let dailyTodos = DailyTodo.from(todos: todos, date: date)
+    return getTemplates.flatMap { templates -> AnyPublisher<Any, Error> in
+      let dailyTodos = DailyTodo.from(templates: templates, date: date)
       return putDailyTodos(withUserId: userId, date: date, dailyTodos: dailyTodos)
     }.eraseToAnyPublisher()
   }

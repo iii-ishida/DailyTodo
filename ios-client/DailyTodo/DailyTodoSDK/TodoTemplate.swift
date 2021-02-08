@@ -10,7 +10,7 @@ import Firebase
 import Foundation
 
 /// A Todo.
-public struct Todo: Identifiable, Codable, Equatable {
+public struct TodoTemplate: Identifiable, Codable, Equatable {
   /// id.
   public let id: String
 
@@ -39,8 +39,8 @@ public struct Todo: Identifiable, Codable, Equatable {
   }
 
   /// Update the todo with a title.
-  public func updated(withTitle newTitle: String) -> Todo {
-    Todo(id: id, title: newTitle, order: order, updatedAt: updatedAt)
+  public func updated(withTitle newTitle: String) -> TodoTemplate {
+    TodoTemplate(id: id, title: newTitle, order: order, updatedAt: updatedAt)
   }
 
   /// Hashes the essential components of this value by feeding them into the given hasher.
@@ -49,32 +49,32 @@ public struct Todo: Identifiable, Codable, Equatable {
   }
 }
 
-extension Todo {
+extension TodoTemplate {
   /// emtpy Todo.
-  public static var empty: Todo {
-    Todo(id: "", title: "", order: 0, updatedAt: nil)
+  public static var empty: TodoTemplate {
+    TodoTemplate(id: "", title: "", order: 0, updatedAt: nil)
   }
 }
 
 // MARK: Todo List
-extension Todo {
+extension TodoTemplate {
   /// Reorder todoList.
-  public static func reorderTodoList(_ todoList: [Todo], from: Int, to: Int) -> [Todo] {
+  public static func reorderTodoList(_ todoList: [TodoTemplate], from: Int, to: Int) -> [TodoTemplate] {
     var reordered = todoList
     let todo = reordered.remove(at: from)
     reordered.insert(todo, at: to)
 
     return reordered.enumerated().map { arg in
       let (index, todo) = arg
-      return Todo(id: todo.id, title: todo.title, order: index, updatedAt: todo.updatedAt)
+      return TodoTemplate(id: todo.id, title: todo.title, order: index, updatedAt: todo.updatedAt)
     }
   }
 }
 
 // MARK: Firestore
-extension Todo {
-  static func from(firestoreDocuments documents: [DocumentSnapshot]) -> [Todo] {
-    documents.compactMap { Todo(firebaseDocument: $0) }
+extension TodoTemplate {
+  static func from(firestoreDocuments documents: [DocumentSnapshot]) -> [TodoTemplate] {
+    documents.compactMap { TodoTemplate(firebaseDocument: $0) }
   }
 
   init?(firebaseDocument document: DocumentSnapshot) {

@@ -31,14 +31,14 @@ public struct DailyTodo: Identifiable, Codable {
   /// doneAt.
   private(set) public var doneAt: Date?
 
-  private init(todo: Todo, date: Date) {
+  private init(template: TodoTemplate, date: Date) {
     let yyyymmdd = Self.dateFormatter.string(from: date)
 
-    self.id = "\(yyyymmdd)-\(todo.id)"
-    self.origintlId = todo.id
+    self.id = "\(yyyymmdd)-\(template.id)"
+    self.origintlId = template.id
     self.date = date
-    self.title = todo.title
-    self.order = todo.order
+    self.title = template.title
+    self.order = template.order
     self.done = false
     self.doneAt = nil
   }
@@ -53,8 +53,8 @@ public struct DailyTodo: Identifiable, Codable {
     self.doneAt = nil
   }
 
-  public static func from(todos: [Todo], date: Date) -> [DailyTodo] {
-    return todos.map { DailyTodo(todo: $0, date: date) }
+  public static func from(templates: [TodoTemplate], date: Date) -> [DailyTodo] {
+    return templates.map { DailyTodo(template: $0, date: date) }
   }
 
   public mutating func done(doneAt: Date) {

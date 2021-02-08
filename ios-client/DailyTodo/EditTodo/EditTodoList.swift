@@ -12,7 +12,7 @@ import UniformTypeIdentifiers
 struct EditTodoList: View {
   @StateObject private var model = ViewModel()
   @State private var isEditable = false
-  @State private var dragging: Todo?
+  @State private var dragging: TodoTemplate?
 
   var body: some View {
     NavigationView {
@@ -29,7 +29,7 @@ struct EditTodoList: View {
           model.deleteAt(index)
         }
 
-        EditTodoRow(todo: Todo(title: "", order: model.list.count))
+        EditTodoRow(todo: TodoTemplate(title: "", order: model.list.count))
       }
       .navigationTitle("Edit Todo")
       .navigationBarTitleDisplayMode(.inline)
@@ -39,11 +39,11 @@ struct EditTodoList: View {
 }
 
 private class ViewModel: ObservableObject {
-  @Published var list: [Todo] = []
+  @Published var list: [TodoTemplate] = []
   private var cancellableSet: Set<AnyCancellable> = []
 
   init() {
-    DailyTodoAPI.watchTodoList()
+    DailyTodoAPI.watchTodoTemplateList()
       .sink(
         receiveCompletion: { _ in },
         receiveValue: { self.list = $0 }
@@ -52,16 +52,16 @@ private class ViewModel: ObservableObject {
   }
 
   func move(from: Int, to: Int) {
-    DailyTodoAPI.updateReorderedTodoList(todoList: list, from: from, to: to).sink(
+    DailyTodoAPI.updateReorderedTodoTemplateList(todoTemplateList: list, from: from, to: to).sink(
       receiveCompletion: { _ in },
       receiveValue: { _ in }
     ).store(in: &cancellableSet)
   }
 
   func deleteAt(_ index: Int) {
-    let todo = list[index]
+    let template = list[index]
 
-    DailyTodoAPI.deleteTodo(todo).sink(
+    DailyTodoAPI.deleteTodoTemplate(template).sink(
       receiveCompletion: { _ in },
       receiveValue: { _ in }
     ).store(in: &cancellableSet)
