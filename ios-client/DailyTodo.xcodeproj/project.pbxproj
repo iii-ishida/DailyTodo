@@ -25,8 +25,8 @@
 		6267DE7E2519D9C4003EC67E /* DailyTodoAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6267DE792519D9C3003EC67E /* DailyTodoAuth.swift */; };
 		6267DE952519DDFF003EC67E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6267DE942519DDFF003EC67E /* GoogleService-Info.plist */; };
 		6267DE9E2519DED1003EC67E /* AppTabNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6267DE9D2519DED1003EC67E /* AppTabNavigation.swift */; };
-		6267DEA62519DFA4003EC67E /* DailyTodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6267DEA52519DFA4003EC67E /* DailyTodoList.swift */; };
-		6267DEAB2519E03F003EC67E /* DailyTodoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6267DEAA2519E03F003EC67E /* DailyTodoRow.swift */; };
+		6267DEA62519DFA4003EC67E /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6267DEA52519DFA4003EC67E /* TodoList.swift */; };
+		6267DEAB2519E03F003EC67E /* TodoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6267DEAA2519E03F003EC67E /* TodoRow.swift */; };
 		62F22142252AA50C00D6040D /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F22141252AA50C00D6040D /* AuthView.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,8 +70,8 @@
 		6267DE792519D9C3003EC67E /* DailyTodoAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTodoAuth.swift; sourceTree = "<group>"; };
 		6267DE942519DDFF003EC67E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6267DE9D2519DED1003EC67E /* AppTabNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabNavigation.swift; sourceTree = "<group>"; };
-		6267DEA52519DFA4003EC67E /* DailyTodoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTodoList.swift; sourceTree = "<group>"; };
-		6267DEAA2519E03F003EC67E /* DailyTodoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTodoRow.swift; sourceTree = "<group>"; };
+		6267DEA52519DFA4003EC67E /* TodoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
+		6267DEAA2519E03F003EC67E /* TodoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRow.swift; sourceTree = "<group>"; };
 		62F22141252AA50C00D6040D /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,7 +137,7 @@
 				6220B98725187ED800A0DBE9 /* DailyTodoApp.swift */,
 				6267DE992519DE8B003EC67E /* Navigation */,
 				62F22140252AA4F700D6040D /* Auth */,
-				6267DEAF2519E111003EC67E /* DailyTodo */,
+				6267DEAF2519E111003EC67E /* TodoList */,
 				62598B6325B81F7D00CC08CB /* EditTodo */,
 				6210743025A5DCC300BEC451 /* Settings */,
 				6267DE712519D98F003EC67E /* DailyTodoSDK */,
@@ -212,13 +212,13 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
-		6267DEAF2519E111003EC67E /* DailyTodo */ = {
+		6267DEAF2519E111003EC67E /* TodoList */ = {
 			isa = PBXGroup;
 			children = (
-				6267DEA52519DFA4003EC67E /* DailyTodoList.swift */,
-				6267DEAA2519E03F003EC67E /* DailyTodoRow.swift */,
+				6267DEA52519DFA4003EC67E /* TodoList.swift */,
+				6267DEAA2519E03F003EC67E /* TodoRow.swift */,
 			);
-			path = DailyTodo;
+			path = TodoList;
 			sourceTree = "<group>";
 		};
 		62F22140252AA4F700D6040D /* Auth */ = {
@@ -375,9 +375,9 @@
 				62598B7325B820BB00CC08CB /* EditTodoRow.swift in Sources */,
 				6267DE7A2519D9C4003EC67E /* Todo.swift in Sources */,
 				6267DE7D2519D9C4003EC67E /* DailyTodoSDK.swift in Sources */,
-				6267DEAB2519E03F003EC67E /* DailyTodoRow.swift in Sources */,
+				6267DEAB2519E03F003EC67E /* TodoRow.swift in Sources */,
 				6267DE7E2519D9C4003EC67E /* DailyTodoAuth.swift in Sources */,
-				6267DEA62519DFA4003EC67E /* DailyTodoList.swift in Sources */,
+				6267DEA62519DFA4003EC67E /* TodoList.swift in Sources */,
 				62F22142252AA50C00D6040D /* AuthView.swift in Sources */,
 				6220B98825187ED800A0DBE9 /* DailyTodoApp.swift in Sources */,
 			);

@@ -12,7 +12,7 @@ struct AppTabNavigation: View {
 
   var body: some View {
     TabView(selection: $selection) {
-      DailyTodoList()
+      TodoList()
         .tabItem {
           Label("Todo", systemImage: "list.bullet")
             .accessibility(label: Text("Todo"))

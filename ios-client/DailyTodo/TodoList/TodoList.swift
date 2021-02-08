@@ -8,14 +8,14 @@
 import Combine
 import SwiftUI
 
-struct DailyTodoList: View {
+struct TodoList: View {
   @StateObject private var model = ViewModel(date: Date())
 
   var body: some View {
     NavigationView {
       List {
         ForEach(model.list) { todo in
-          DailyTodoRow(dailyTodo: todo)
+          TodoRow(dailyTodo: todo)
         }
       }
       .navigationTitle(Text(model.date, style: .date))
@@ -47,6 +47,6 @@ private class ViewModel: ObservableObject {
 
 struct DailyTodoList_Previews: PreviewProvider {
   static var previews: some View {
-    DailyTodoList()
+    TodoList()
   }
 }

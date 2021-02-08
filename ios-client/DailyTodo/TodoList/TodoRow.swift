@@ -8,7 +8,7 @@
 import Combine
 import SwiftUI
 
-struct DailyTodoRow: View {
+struct TodoRow: View {
   private var model: ViewModel
 
   init(dailyTodo: DailyTodo) {
@@ -52,6 +52,6 @@ private class ViewModel: ObservableObject {
 
 struct DailyTodoRow_Previews: PreviewProvider {
   static var previews: some View {
-    DailyTodoRow(dailyTodo: DailyTodo(title: "some todo"))
+    TodoRow(dailyTodo: DailyTodo(title: "some todo"))
   }
 }
