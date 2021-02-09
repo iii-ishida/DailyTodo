@@ -15,7 +15,7 @@ struct TodoList: View {
     NavigationView {
       List {
         ForEach(model.list) { todo in
-          TodoRow(dailyTodo: todo)
+          TodoRow(todo: todo)
         }
       }
       .navigationTitle(Text(model.date, style: .date))
@@ -25,7 +25,7 @@ struct TodoList: View {
 }
 
 private class ViewModel: ObservableObject {
-  @Published var list: [DailyTodo] = []
+  @Published var list: [Todo] = []
   let date: Date
 
   private var cancellableSet: Set<AnyCancellable> = []
@@ -33,8 +33,8 @@ private class ViewModel: ObservableObject {
   init(date: Date) {
     self.date = date
 
-    DailyTodoAPI.createDailyTodoIfNeeded(date: date).flatMap { _ in
-      DailyTodoAPI.watchDailyTodoList(date: date)
+    DailyTodoAPI.createTodoIfNeeded(date: date).flatMap { _ in
+      DailyTodoAPI.watchTodoList(date: date)
     }
     .receive(on: RunLoop.main)
     .sink(
@@ -45,7 +45,7 @@ private class ViewModel: ObservableObject {
   }
 }
 
-struct DailyTodoList_Previews: PreviewProvider {
+struct TodoList_Previews: PreviewProvider {
   static var previews: some View {
     TodoList()
   }

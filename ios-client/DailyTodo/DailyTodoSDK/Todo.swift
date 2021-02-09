@@ -9,7 +9,7 @@
 import Firebase
 import Foundation
 
-public struct DailyTodo: Identifiable, Codable {
+public struct Todo: Identifiable, Codable {
   /// id.
   public let id: String
 
@@ -53,8 +53,8 @@ public struct DailyTodo: Identifiable, Codable {
     self.doneAt = nil
   }
 
-  public static func from(templates: [TodoTemplate], date: Date) -> [DailyTodo] {
-    return templates.map { DailyTodo(template: $0, date: date) }
+  public static func from(templates: [TodoTemplate], date: Date) -> [Todo] {
+    return templates.map { Todo(template: $0, date: date) }
   }
 
   public mutating func done(doneAt: Date) {
@@ -70,7 +70,7 @@ public struct DailyTodo: Identifiable, Codable {
 }
 
 // MARK: Firestore
-extension DailyTodo {
+extension Todo {
   init?(firebaseDocument document: DocumentSnapshot) {
     guard let data = document.data() else { return nil }
 
@@ -83,7 +83,7 @@ extension DailyTodo {
     doneAt = (data["doneAt"] as? Timestamp)?.dateValue()
   }
 
-  static func from(firestoreDocuments documents: [DocumentSnapshot]) -> [DailyTodo] {
-    documents.compactMap { DailyTodo(firebaseDocument: $0) }
+  static func from(firestoreDocuments documents: [DocumentSnapshot]) -> [Todo] {
+    documents.compactMap { Todo(firebaseDocument: $0) }
   }
 }

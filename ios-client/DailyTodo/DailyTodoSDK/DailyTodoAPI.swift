@@ -165,13 +165,13 @@ public enum DailyTodoAPI {
 
 extension DailyTodoAPI {
   /// Watch modify events for Todos.
-  public static func watchDailyTodoList(date: Date) -> AnyPublisher<[DailyTodo], Error> {
+  public static func watchTodoList(date: Date) -> AnyPublisher<[Todo], Error> {
     guard let userId = userId else {
       return authErrorFuture()
     }
 
-    let sub = PassthroughSubject<[DailyTodo], Error>()
-    let listener = dailyTodoCollection(withUserId: userId, date: date).order(by: "order").addSnapshotListener { querySnapshot, error in
+    let sub = PassthroughSubject<[Todo], Error>()
+    let listener = todoCollection(withUserId: userId, date: date).order(by: "order").addSnapshotListener { querySnapshot, error in
       if let error = error {
         sub.send(completion: .failure(error))
         return
@@ -179,7 +179,7 @@ extension DailyTodoAPI {
 
       guard let documents = querySnapshot?.documents else { return }
 
-      sub.send(DailyTodo.from(firestoreDocuments: documents))
+      sub.send(Todo.from(firestoreDocuments: documents))
     }
 
     return sub.handleEvents(
@@ -188,28 +188,28 @@ extension DailyTodoAPI {
     ).eraseToAnyPublisher()
   }
 
-  public static func createDailyTodoIfNeeded(date: Date) -> AnyPublisher<Any, Error> {
+  public static func createTodoIfNeeded(date: Date) -> AnyPublisher<Any, Error> {
     guard let userId = userId else {
       return authErrorFuture()
     }
 
-    return hasDailyTodo(withUserId: userId, date: date)
-      .flatMap { hasDailyTodo -> AnyPublisher<Any, Error> in
-        if hasDailyTodo {
+    return todoExists(withUserId: userId, date: date)
+      .flatMap { exists -> AnyPublisher<Any, Error> in
+        if exists {
           return Just<Any>(true).setFailureType(to: Error.self).eraseToAnyPublisher()
         } else {
-          return copyDailyTodo(withUserId: userId, date: date)
+          return copyTodo(withUserId: userId, date: date)
         }
       }.eraseToAnyPublisher()
   }
 
-  public static func doneDailyTodo(dailyTodo: DailyTodo) -> AnyPublisher<Any, Error> {
+  public static func doneTodo(todo: Todo) -> AnyPublisher<Any, Error> {
     guard let userId = userId else {
       return authErrorFuture()
     }
 
     return Future<Any, Error> { promise in
-      dailyTodoCollection(withUserId: userId, date: dailyTodo.date).document(dailyTodo.id).setData(["done": true, "doneAt": FieldValue.serverTimestamp()], merge: true) {
+      todoCollection(withUserId: userId, date: todo.date).document(todo.id).setData(["done": true, "doneAt": FieldValue.serverTimestamp()], merge: true) {
         if let error = $0 {
           promise(.failure(error))
         } else {
@@ -219,13 +219,13 @@ extension DailyTodoAPI {
     }.eraseToAnyPublisher()
   }
 
-  public static func undoneDailyTodo(dailyTodo: DailyTodo) -> AnyPublisher<Any, Error> {
+  public static func undoneTodo(todo: Todo) -> AnyPublisher<Any, Error> {
     guard let userId = userId else {
       return authErrorFuture()
     }
 
     return Future<Any, Error> { promise in
-      dailyTodoCollection(withUserId: userId, date: dailyTodo.date).document(dailyTodo.id).setData(["done": false, "doneAt": NSNull()], merge: true) {
+      todoCollection(withUserId: userId, date: todo.date).document(todo.id).setData(["done": false, "doneAt": NSNull()], merge: true) {
         if let error = $0 {
           promise(.failure(error))
         } else {
@@ -235,7 +235,7 @@ extension DailyTodoAPI {
     }.eraseToAnyPublisher()
   }
 
-  private static func copyDailyTodo(withUserId userId: String, date: Date) -> AnyPublisher<Any, Error> {
+  private static func copyTodo(withUserId userId: String, date: Date) -> AnyPublisher<Any, Error> {
     let getTemplates = Future<[TodoTemplate], Error> { promise in
       todoTemplateCollection(withUserId: userId).getDocuments { querySnapshot, error in
         if let error = error {
@@ -252,15 +252,15 @@ extension DailyTodoAPI {
     }.eraseToAnyPublisher()
 
     return getTemplates.flatMap { templates -> AnyPublisher<Any, Error> in
-      let dailyTodos = DailyTodo.from(templates: templates, date: date)
-      return putDailyTodos(withUserId: userId, date: date, dailyTodos: dailyTodos)
+      let todos = Todo.from(templates: templates, date: date)
+      return putTodos(withUserId: userId, date: date, todos: todos)
     }.eraseToAnyPublisher()
   }
 
-  private static func putDailyTodos(withUserId userId: String, date: Date, dailyTodos: [DailyTodo]) -> AnyPublisher<Any, Error> {
+  private static func putTodos(withUserId userId: String, date: Date, todos: [Todo]) -> AnyPublisher<Any, Error> {
     let batch = db.batch()
-    let collection = dailyTodoCollection(withUserId: userId, date: date)
-    dailyTodos.forEach {
+    let collection = todoCollection(withUserId: userId, date: date)
+    todos.forEach {
       let ref = collection.document($0.id)
       let data: [String: Any] = [
         "originalId": $0.origintlId,
@@ -284,21 +284,21 @@ extension DailyTodoAPI {
     }.eraseToAnyPublisher()
   }
 
-  private static func hasDailyTodo(withUserId userId: String, date: Date) -> AnyPublisher<Bool, Error> {
+  private static func todoExists(withUserId userId: String, date: Date) -> AnyPublisher<Bool, Error> {
     return Future<Bool, Error> { promise in
-      dailyTodoCollection(withUserId: userId, date: date).limit(to: 1).getDocuments { querySnapshot, error in
+      todoCollection(withUserId: userId, date: date).limit(to: 1).getDocuments { querySnapshot, error in
         if let error = error {
           promise(.failure(error))
           return
         }
 
-        let existsDailyTodo = querySnapshot?.documents.count ?? 0 > 0
-        promise(.success(existsDailyTodo))
+        let exists = querySnapshot?.documents.count ?? 0 > 0
+        promise(.success(exists))
       }
     }.eraseToAnyPublisher()
   }
 
-  private static func dailyTodoCollection(withUserId userId: String, date: Date) -> CollectionReference {
+  private static func todoCollection(withUserId userId: String, date: Date) -> CollectionReference {
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyyMMdd"
 

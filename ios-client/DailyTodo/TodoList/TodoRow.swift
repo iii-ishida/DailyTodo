@@ -11,8 +11,8 @@ import SwiftUI
 struct TodoRow: View {
   private var model: ViewModel
 
-  init(dailyTodo: DailyTodo) {
-    model = ViewModel(dailyTodo: dailyTodo)
+  init(todo: Todo) {
+    model = ViewModel(todo: todo)
   }
 
   var body: some View {
@@ -28,30 +28,30 @@ private class ViewModel: ObservableObject {
   let isDone: Bool
   let title: String
 
-  private let dailyTodo: DailyTodo
+  private let todo: Todo
   private var cancellableSet: Set<AnyCancellable> = []
 
-  init(dailyTodo: DailyTodo) {
-    self.dailyTodo = dailyTodo
-    self.isDone = dailyTodo.done
-    self.title = dailyTodo.title
+  init(todo: Todo) {
+    self.todo = todo
+    self.isDone = todo.done
+    self.title = todo.title
   }
 
   func toggle(_ done: Bool) {
     if done {
-      DailyTodoAPI.doneDailyTodo(dailyTodo: dailyTodo)
+      DailyTodoAPI.doneTodo(todo: todo)
         .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
         .store(in: &cancellableSet)
     } else {
-      DailyTodoAPI.undoneDailyTodo(dailyTodo: dailyTodo)
+      DailyTodoAPI.undoneTodo(todo: todo)
         .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
         .store(in: &cancellableSet)
     }
   }
 }
 
-struct DailyTodoRow_Previews: PreviewProvider {
+struct TodoRow_Previews: PreviewProvider {
   static var previews: some View {
-    TodoRow(dailyTodo: DailyTodo(title: "some todo"))
+    TodoRow(todo: Todo(title: "some todo"))
   }
 }
