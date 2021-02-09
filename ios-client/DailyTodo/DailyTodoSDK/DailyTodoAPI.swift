@@ -155,7 +155,7 @@ public enum DailyTodoAPI {
   }
 
   private static func todoTemplateCollection(withUserId userId: String) -> CollectionReference {
-    db.collection("users/\(userId)/todos")
+    db.collection("users/\(userId)/templates")
   }
 
   private static func authErrorFuture<T>() -> AnyPublisher<T, Error> {
@@ -303,6 +303,6 @@ extension DailyTodoAPI {
     formatter.dateFormat = "yyyyMMdd"
 
     let yyyymmdd = formatter.string(from: date)
-    return db.collection("users/\(userId)/daily/todos/\(yyyymmdd)")
+    return db.collection("users/\(userId)/dates/\(yyyymmdd)/todos/")
   }
 }
