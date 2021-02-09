@@ -19,7 +19,7 @@ struct AppTabNavigation: View {
         }
         .tag(Tab.todo)
 
-      EditTodoList()
+      TodoTemplateList()
         .tabItem {
           Label("編集", systemImage: "pencil")
             .accessibility(label: Text("編集"))

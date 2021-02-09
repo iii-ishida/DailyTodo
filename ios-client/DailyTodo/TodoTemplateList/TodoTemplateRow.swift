@@ -8,11 +8,11 @@
 import Combine
 import SwiftUI
 
-struct EditTodoRow: View {
+struct TodoTemplateRow: View {
   @ObservedObject private var model: ViewModel
 
-  init(todo: TodoTemplate) {
-    model = ViewModel(todo: todo)
+  init(todoTemplate: TodoTemplate) {
+    model = ViewModel(todoTemplate: todoTemplate)
   }
 
   var body: some View {
@@ -24,13 +24,13 @@ private class ViewModel: ObservableObject {
   @Published var title: String
   let isNew: Bool
 
-  private let todo: TodoTemplate
+  private let todoTemplate: TodoTemplate
   private var cancellableSet: Set<AnyCancellable> = []
 
-  init(todo: TodoTemplate) {
-    self.todo = todo
-    self.title = todo.title
-    self.isNew = todo.id == ""
+  init(todoTemplate: TodoTemplate) {
+    self.todoTemplate = todoTemplate
+    self.title = todoTemplate.title
+    self.isNew = todoTemplate.id == ""
   }
 
   func updateTodo() {
@@ -43,7 +43,7 @@ private class ViewModel: ObservableObject {
           receiveValue: { _ in }
         ).store(in: &cancellableSet)
     } else {
-      DailyTodoAPI.updateTodoTemplate(withId: todo.id, title: title).sink(
+      DailyTodoAPI.updateTodoTemplate(withId: todoTemplate.id, title: title).sink(
         receiveCompletion: { _ in },
         receiveValue: { _ in }
       ).store(in: &cancellableSet)
@@ -51,8 +51,8 @@ private class ViewModel: ObservableObject {
   }
 }
 
-struct EditTodoRow_Previews: PreviewProvider {
+struct TodoTemplateRow_Previews: PreviewProvider {
   static var previews: some View {
-    EditTodoRow(todo: TodoTemplate(title: "some todo", order: 1))
+    TodoTemplateRow(todoTemplate: TodoTemplate(title: "some todo", order: 1))
   }
 }

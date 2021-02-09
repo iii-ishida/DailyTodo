@@ -16,8 +16,8 @@
 		6220B99A25187ED900A0DBE9 /* DailyTodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6220B99925187ED900A0DBE9 /* DailyTodoTests.swift */; };
 		6220B9A525187ED900A0DBE9 /* DailyTodoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6220B9A425187ED900A0DBE9 /* DailyTodoUITests.swift */; };
 		624F04A225B5844400CDCC4D /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624F04A125B5844400CDCC4D /* Setting.swift */; };
-		62598B6525B81FBC00CC08CB /* EditTodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62598B6425B81FBC00CC08CB /* EditTodoList.swift */; };
-		62598B7325B820BB00CC08CB /* EditTodoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62598B7225B820BB00CC08CB /* EditTodoRow.swift */; };
+		62598B6525B81FBC00CC08CB /* TodoTemplateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62598B6425B81FBC00CC08CB /* TodoTemplateList.swift */; };
+		62598B7325B820BB00CC08CB /* TodoTemplateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62598B7225B820BB00CC08CB /* TodoTemplateRow.swift */; };
 		6267DE7A2519D9C4003EC67E /* TodoTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6267DE752519D9C2003EC67E /* TodoTemplate.swift */; };
 		6267DE7B2519D9C4003EC67E /* DailyTodoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6267DE762519D9C3003EC67E /* DailyTodoAPI.swift */; };
 		6267DE7C2519D9C4003EC67E /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6267DE772519D9C3003EC67E /* Todo.swift */; };
@@ -61,8 +61,8 @@
 		6220B9A425187ED900A0DBE9 /* DailyTodoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTodoUITests.swift; sourceTree = "<group>"; };
 		6220B9A625187ED900A0DBE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		624F04A125B5844400CDCC4D /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
-		62598B6425B81FBC00CC08CB /* EditTodoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTodoList.swift; sourceTree = "<group>"; };
-		62598B7225B820BB00CC08CB /* EditTodoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTodoRow.swift; sourceTree = "<group>"; };
+		62598B6425B81FBC00CC08CB /* TodoTemplateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTemplateList.swift; sourceTree = "<group>"; };
+		62598B7225B820BB00CC08CB /* TodoTemplateRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTemplateRow.swift; sourceTree = "<group>"; };
 		6267DE752519D9C2003EC67E /* TodoTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoTemplate.swift; sourceTree = "<group>"; };
 		6267DE762519D9C3003EC67E /* DailyTodoAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTodoAPI.swift; sourceTree = "<group>"; };
 		6267DE772519D9C3003EC67E /* Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 				6267DE992519DE8B003EC67E /* Navigation */,
 				62F22140252AA4F700D6040D /* Auth */,
 				6267DEAF2519E111003EC67E /* TodoList */,
-				62598B6325B81F7D00CC08CB /* EditTodo */,
+				62598B6325B81F7D00CC08CB /* TodoTemplateList */,
 				6210743025A5DCC300BEC451 /* Settings */,
 				6267DE712519D98F003EC67E /* DailyTodoSDK */,
 				6220B98B25187ED900A0DBE9 /* Assets.xcassets */,
@@ -175,13 +175,13 @@
 			path = DailyTodoUITests;
 			sourceTree = "<group>";
 		};
-		62598B6325B81F7D00CC08CB /* EditTodo */ = {
+		62598B6325B81F7D00CC08CB /* TodoTemplateList */ = {
 			isa = PBXGroup;
 			children = (
-				62598B6425B81FBC00CC08CB /* EditTodoList.swift */,
-				62598B7225B820BB00CC08CB /* EditTodoRow.swift */,
+				62598B6425B81FBC00CC08CB /* TodoTemplateList.swift */,
+				62598B7225B820BB00CC08CB /* TodoTemplateRow.swift */,
 			);
-			path = EditTodo;
+			path = TodoTemplateList;
 			sourceTree = "<group>";
 		};
 		6267DE712519D98F003EC67E /* DailyTodoSDK */ = {
@@ -369,10 +369,10 @@
 				6267DE7C2519D9C4003EC67E /* Todo.swift in Sources */,
 				6267DE9E2519DED1003EC67E /* AppTabNavigation.swift in Sources */,
 				624F04A225B5844400CDCC4D /* Setting.swift in Sources */,
-				62598B6525B81FBC00CC08CB /* EditTodoList.swift in Sources */,
+				62598B6525B81FBC00CC08CB /* TodoTemplateList.swift in Sources */,
 				6267DE7B2519D9C4003EC67E /* DailyTodoAPI.swift in Sources */,
 				6220B98A25187ED800A0DBE9 /* ContentView.swift in Sources */,
-				62598B7325B820BB00CC08CB /* EditTodoRow.swift in Sources */,
+				62598B7325B820BB00CC08CB /* TodoTemplateRow.swift in Sources */,
 				6267DE7A2519D9C4003EC67E /* TodoTemplate.swift in Sources */,
 				6267DE7D2519D9C4003EC67E /* DailyTodoSDK.swift in Sources */,
 				6267DEAB2519E03F003EC67E /* TodoRow.swift in Sources */,

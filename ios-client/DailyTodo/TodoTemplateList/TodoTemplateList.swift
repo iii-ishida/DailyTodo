@@ -9,7 +9,7 @@ import Combine
 import SwiftUI
 import UniformTypeIdentifiers
 
-struct EditTodoList: View {
+struct TodoTemplateList: View {
   @StateObject private var model = ViewModel()
   @State private var isEditable = false
   @State private var dragging: TodoTemplate?
@@ -17,8 +17,8 @@ struct EditTodoList: View {
   var body: some View {
     NavigationView {
       List {
-        ForEach(model.list) { todo in
-          EditTodoRow(todo: todo)
+        ForEach(model.list) { todoTemplate in
+          TodoTemplateRow(todoTemplate: todoTemplate)
         }
         .onMove {
           guard let from = $0.first else { return }
@@ -29,7 +29,7 @@ struct EditTodoList: View {
           model.deleteAt(index)
         }
 
-        EditTodoRow(todo: TodoTemplate(title: "", order: model.list.count))
+        TodoTemplateRow(todoTemplate: TodoTemplate(title: "", order: model.list.count))
       }
       .navigationTitle("Edit Todo")
       .navigationBarTitleDisplayMode(.inline)
@@ -68,8 +68,8 @@ private class ViewModel: ObservableObject {
   }
 }
 
-struct EditTodoList_Previews: PreviewProvider {
+struct TodoTemplateList_Previews: PreviewProvider {
   static var previews: some View {
-    EditTodoList()
+    TodoTemplateList()
   }
 }
