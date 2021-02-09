@@ -7,12 +7,9 @@
 
 import Combine
 import SwiftUI
-import UniformTypeIdentifiers
 
 struct TodoTemplateList: View {
   @StateObject private var model = ViewModel()
-  @State private var isEditable = false
-  @State private var dragging: TodoTemplate?
 
   var body: some View {
     NavigationView {
